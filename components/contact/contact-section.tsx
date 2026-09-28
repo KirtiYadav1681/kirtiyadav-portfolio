@@ -1,4 +1,3 @@
-import { Magnet } from "@/components/motion/magnet";
 import { site } from "@/lib/site";
 
 export function ContactSection() {
@@ -12,9 +11,9 @@ export function ContactSection() {
           </h2>
           <p className="lead">Full-stack AI engineering. Write to me — I read what I get.</p>
         </header>
-        <Magnet className="email" href={`mailto:${site.email}`}>
+        <a className="email" href={`mailto:${site.email}`}>
           {site.email}
-        </Magnet>
+        </a>
         <div>
           <div className="contact-links">
             <a href={site.phoneHref}>{site.phoneDisplay}</a>

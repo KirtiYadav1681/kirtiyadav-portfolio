@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, IBM_Plex_Mono } from "next/font/google";
-import { CursorDot } from "@/components/navigation/cursor-dot";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 import { ProgressBar } from "@/components/navigation/progress-bar";
 import { SiteHeader } from "@/components/navigation/site-header";
 import { getSiteUrl, site } from "@/lib/site";
@@ -83,7 +83,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to work
         </a>
         <ProgressBar />
-        <CursorDot />
+        <CustomCursor />
         <SiteHeader />
         {children}
       </body>

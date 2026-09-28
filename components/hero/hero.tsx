@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { HeroCanvas } from "@/components/hero/hero-canvas";
-import { Magnet } from "@/components/motion/magnet";
 import { CountUp } from "@/components/ui/count-up";
 import { site } from "@/lib/site";
 
@@ -31,16 +30,16 @@ export function Hero() {
           </h1>
           <p className="dek">{site.dek}</p>
           <div className="cta">
-            <Magnet href="#work" className="btn btn-ink">
+            <a href="#work" className="btn btn-ink">
               See the work
               <ArrowIcon />
-            </Magnet>
-            <Magnet href="#contact" className="btn btn-line">
+            </a>
+            <a href="#contact" className="btn btn-line">
               Get in touch
-            </Magnet>
-            <Magnet href={site.resumes.fullStack.href} className="btn btn-line" download>
+            </a>
+            <a href={site.resumes.fullStack.href} className="btn btn-line" download="">
               Download resume
-            </Magnet>
+            </a>
           </div>
           <p className="resume-alt">
             <a href={site.resumes.fullStack.href} download="">
@@ -65,26 +64,24 @@ export function Hero() {
           </figure>
         </div>
         <aside className="proof" aria-label="At a glance">
-          <div className="proof-in">
-            <p className="proof-stat">
-              <CountUp value={175} suffix="K+" />
-            </p>
-            <p className="proof-sub">active users on Crayon Jobs</p>
-            <dl className="proof-rows">
-              <div>
-                <dt>Since</dt>
-                <dd>May 2025</dd>
-              </div>
-              <div>
-                <dt>Span</dt>
-                <dd>3+ years building software</dd>
-              </div>
-              <div>
-                <dt>Based</dt>
-                <dd>Indore, India</dd>
-              </div>
-            </dl>
-          </div>
+          <p className="proof-stat">
+            <CountUp value={175} suffix="K+" />
+          </p>
+          <p className="proof-sub">active users on Crayon Jobs</p>
+          <dl className="proof-rows">
+            <div>
+              <dt>Since</dt>
+              <dd>May 2025</dd>
+            </div>
+            <div>
+              <dt>Span</dt>
+              <dd>3+ years building software</dd>
+            </div>
+            <div>
+              <dt>Based</dt>
+              <dd>Indore, India</dd>
+            </div>
+          </dl>
         </aside>
       </HeroCanvas>
     </section>

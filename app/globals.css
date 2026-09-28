@@ -182,38 +182,117 @@ section[id],
   pointer-events: none;
 }
 
-.cursor {
+.custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 90;
-  width: 14px;
-  height: 14px;
-  margin: -7px 0 0 -7px;
+  width: 0;
+  height: 0;
   pointer-events: none;
   opacity: 0;
 }
 
-.cursor span {
+.custom-cursor.is-on {
+  opacity: 1;
+}
+
+.custom-cursor-core,
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.custom-cursor-core {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-cursor-core span {
   display: block;
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  background: #f4f1ff;
+  box-shadow: 0 0 0 1px rgba(20, 21, 28, 0.28);
+  transition: transform 0.28s var(--ease), background-color 0.28s var(--ease);
+}
+
+.custom-cursor-ring {
+  width: 32px;
+  height: 32px;
+  --ring-fade: 1;
+}
+
+.custom-cursor-ring-hover,
+.custom-cursor-ring-stroke {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.custom-cursor-ring-hover {
+  transition: transform 280ms var(--ease);
+}
+
+.custom-cursor-ring-stroke {
+  border: 1px solid rgba(226, 220, 255, 0.78);
+  box-shadow: 0 0 0 1px rgba(28, 24, 48, 0.16);
+  background: rgba(201, 186, 255, 0.04);
+  opacity: var(--ring-fade);
+  transition:
+    border-color 280ms var(--ease),
+    background-color 280ms var(--ease),
+    box-shadow 280ms var(--ease);
+}
+
+.custom-cursor.is-hot .custom-cursor-core span {
+  transform: scale(0.84);
   background: #fff;
-  mix-blend-mode: difference;
-  transition: transform 0.35s var(--ease);
 }
 
-.cursor.on {
-  opacity: 1;
+.custom-cursor.is-hot .custom-cursor-ring-hover {
+  transform: scale(1.5);
 }
 
-.cursor.hot span {
-  transform: scale(2.4);
+.custom-cursor.is-hot .custom-cursor-ring-stroke {
+  border-color: rgba(236, 232, 255, 0.95);
+  box-shadow: 0 0 0 1px rgba(28, 24, 48, 0.24);
+  background: rgba(184, 200, 255, 0.1);
+}
+
+.custom-cursor.is-pulse .custom-cursor-ring-stroke {
+  animation: cursor-pulse 300ms linear;
+}
+
+@keyframes cursor-pulse {
+  0% {
+    opacity: var(--ring-fade);
+    transform: scale(1);
+  }
+  42% {
+    opacity: calc(var(--ring-fade) * 0.62);
+    transform: scale(1.25);
+  }
+  100% {
+    opacity: var(--ring-fade);
+    transform: scale(1);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none;
+  }
 }
 
 @media (hover: none), (pointer: coarse) {
-  .cursor {
+  .custom-cursor {
     display: none;
   }
 }
@@ -585,11 +664,6 @@ section[id],
   padding: clamp(22px, 2vw, 32px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 16px 36px rgba(28, 22, 58, 0.16);
-  transition: translate 0.5s var(--ease);
-}
-
-.proof:hover {
-  translate: 0 -4px;
 }
 
 .proof-stat {
@@ -782,12 +856,11 @@ section[id],
   gap: 14px;
   background-size: 160% 160%;
   background-position: 10% 20%;
-  transition: background-position 0.7s var(--ease), translate 0.5s var(--ease);
+  transition: background-position 0.7s var(--ease);
 }
 
 .bcard:hover {
   background-position: 80% 70%;
-  translate: 0 -4px;
 }
 
 .bcard:nth-child(2) {
@@ -1117,11 +1190,6 @@ section[id],
   padding: 16px 16px 8px;
   border: 1px solid rgba(20, 21, 28, 0.08);
   box-shadow: 0 14px 30px rgba(28, 22, 58, 0.08);
-  transition: translate 0.6s var(--ease);
-}
-
-.stage:hover .ui-card {
-  translate: 0 -8px;
 }
 
 .ui-card .label {
@@ -1417,12 +1485,7 @@ section[id],
   padding: 18px 18px 16px;
   border: 1px solid rgba(20, 21, 28, 0.06);
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
-  transition: translate 0.45s var(--ease);
   min-width: 0;
-}
-
-.skill:hover {
-  translate: 0 -3px;
 }
 
 .skill-fe {
@@ -1487,13 +1550,12 @@ section[id],
   gap: 8px;
   background-size: 160% 160%;
   background-position: 20% 20%;
-  transition: background-position 0.7s var(--ease), translate 0.45s var(--ease);
+  transition: background-position 0.7s var(--ease);
   min-width: 0;
 }
 
 .apanel:hover {
   background-position: 80% 70%;
-  translate: 0 -3px;
 }
 
 .apanel .label {
@@ -1954,9 +2016,5 @@ footer {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
-  }
-
-  .cursor {
-    display: none !important;
   }
 }
