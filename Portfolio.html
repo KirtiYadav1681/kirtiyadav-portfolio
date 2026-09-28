@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kirti Yadav is a full-stack AI engineer. She builds production AI products — Crayon’s hiring workflows, and The Bridge as lead frontend.">
+<meta name="theme-color" content="#0c0c0f">
+<title>Kirti Yadav — Full-Stack AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.css">
+<style>
+  :root {
+    --char: #0c0c0f;
+    --char-2: #14141a;
+    --ink: #14151c;
+    --paper: #f4f5fb;
+    --muted: #a6a3b5;
+    --muted-l: #3c3f4e;
+    --line: rgba(255, 255, 255, 0.12);
+    --line-l: rgba(20, 21, 28, 0.12);
+    --nav-h: 58px;
+    --frame: clamp(10px, 1.15vw, 16px);
+    --sans: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --grad: linear-gradient(118deg, #f6efff 0%, #d2b8ff 24%, #b594ff 46%, #9eb6ff 68%, #d7e7ff 100%);
+    --ease: cubic-bezier(.16, 1, .3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { overflow-x: clip; }
+  body {
+    margin: 0;
+    background: var(--char);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  img, svg { display: block; max-width: 100%; }
+  button, summary { font: inherit; color: inherit; }
+  a { color: inherit; }
+  h1, h2, h3, p { margin: 0; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  ::selection { background: #c9b6ff; color: var(--ink); }
+  :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+  .sr {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+  .label {
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .display {
+    font-weight: 800;
+    letter-spacing: -0.055em;
+    line-height: 0.88;
+    font-size: clamp(3rem, 7.2vw, 7.4rem);
+  }
+  .lead { max-width: 38rem; color: var(--muted); font-size: 1.05rem; }
+  .sec { padding: clamp(72px, 10vw, 132px) clamp(16px, 3vw, 48px); }
+  .sec-head { margin-bottom: clamp(28px, 4vw, 52px); display: grid; gap: 16px; }
+  .sec-head .label { color: #d5c9ff; }
+  section[id], .ai-item, .project { scroll-margin-top: 74px; }
+
+  .progress {
+    position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 80;
+    background: #c9b6ff; transform: scaleX(0); transform-origin: 0 50%; pointer-events: none;
+  }
+
+  .cursor {
+    position: fixed; top: 0; left: 0; z-index: 90; width: 14px; height: 14px;
+    margin: -7px 0 0 -7px; pointer-events: none; opacity: 0;
+  }
+  .cursor span {
+    display: block; width: 100%; height: 100%; border-radius: 50%; background: #fff;
+    mix-blend-mode: difference; transition: transform 0.35s var(--ease);
+  }
+  .cursor.on { opacity: 1; }
+  .cursor.hot span { transform: scale(2.4); }
+  @media (hover: none), (pointer: coarse) { .cursor { display: none; } }
+
+  .nav {
+    position: sticky; top: 0; z-index: 40; height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(16px, 2vw, 28px); background: var(--char); color: var(--paper);
+  }
+  .brand {
+    text-decoration: none; font-weight: 700; letter-spacing: -0.04em; font-size: 15px;
+  }
+  .nav-links { display: none; gap: 22px; align-items: center; }
+  .nav-links a {
+    text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: -0.02em;
+    color: var(--muted); padding: 6px 0;
+  }
+  .nav-links a:hover { color: var(--paper); }
+  .nav-links a[aria-current="page"] { color: #fff; box-shadow: inset 0 -2px 0 #c9b6ff; }
+  .nav-toggle {
+    appearance: none; background: transparent; color: var(--paper);
+    border: 1px solid var(--line); min-height: 40px; padding: 0 14px; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+  }
+  .nav-toggle b { font-weight: 650; font-size: 13px; }
+  .burger { width: 14px; height: 10px; position: relative; }
+  .burger::before, .burger::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 1.5px; background: currentColor;
+    transition: transform 0.3s var(--ease), top 0.3s var(--ease);
+  }
+  .burger::before { top: 1px; }
+  .burger::after { top: 8px; }
+  .nav-toggle[aria-expanded="true"] .burger::before { top: 4.5px; transform: rotate(40deg); }
+  .nav-toggle[aria-expanded="true"] .burger::after { top: 4.5px; transform: rotate(-40deg); }
+
+  .menu {
+    position: fixed; inset: var(--nav-h) 0 0 0; z-index: 35; background: var(--char);
+    padding: 12px clamp(18px, 4vw, 36px) 28px; display: flex; flex-direction: column;
+  }
+  .menu[hidden] { display: none; }
+  .menu a.mlink {
+    text-decoration: none; font-weight: 800; letter-spacing: -0.05em;
+    font-size: clamp(2.4rem, 10vw, 4rem); line-height: 1.02; padding: 6px 0;
+    border-top: 1px solid var(--line);
+  }
+  .menu a.mlink:last-of-type { border-bottom: 1px solid var(--line); }
+  .menu a.mlink:hover { color: #d9ccff; }
+  .menu-foot { margin-top: auto; display: flex; flex-direction: column; gap: 8px; padding-top: 24px; }
+  .menu-foot a { color: var(--paper); }
+
+  @media (min-width: 980px) {
+    .nav-links { display: flex; }
+    .nav-toggle { display: none; }
+  }
+
+  /* Hero */
+  .hero { padding: 10px var(--frame) var(--frame); }
+  .hero-canvas {
+    position: relative;
+    min-height: calc(100svh - var(--nav-h) - 20px);
+    border-radius: clamp(18px, 2vw, 28px);
+    overflow: hidden;
+    color: var(--ink);
+    background-color: #c9d8ff;
+    background-image:
+      radial-gradient(780px 560px at 6% 8%, #f3e8ff 0%, rgba(243, 232, 255, 0) 58%),
+      radial-gradient(720px 520px at 96% 92%, #c5dcff 0%, rgba(197, 220, 255, 0) 52%),
+      var(--grad);
+    background-size: 140% 140%, 140% 140%, 160% 160%;
+    background-position: 0% 0%, 100% 100%, 0% 40%;
+    padding: clamp(28px, 5vh, 56px) clamp(22px, 3vw, 48px) 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-canvas { animation: drift 22s ease-in-out infinite alternate; }
+  }
+  @keyframes drift {
+    from { background-position: 0% 0%, 100% 100%, 0% 40%; }
+    to { background-position: 10% 8%, 80% 70%, 100% 60%; }
+  }
+  .hero-copy { position: relative; z-index: 2; width: min(64%, 780px); padding: clamp(8px, 3vh, 28px) 0 clamp(36px, 6vh, 64px); }
+  .hero-kicker { color: var(--muted-l); margin-bottom: 14px; }
+  .line { display: block; overflow: hidden; }
+  .line-in { display: block; }
+  .hero-id {
+    font-weight: 720; letter-spacing: -0.045em;
+    font-size: clamp(1.75rem, 2.8vw, 2.65rem); line-height: 1.15; margin-bottom: 0.16em;
+  }
+  .hero-role {
+    font-weight: 800; letter-spacing: -0.062em; line-height: 0.86;
+    font-size: clamp(3.8rem, 7.8vw, 8.15rem);
+  }
+  .hero-copy .dek { margin-top: 18px; max-width: 32ch; }
+  .hero-canvas { --proof-w: clamp(350px, 26vw, 390px); --proof-gap: clamp(18px, 2vw, 32px); }
+  .hero-portrait {
+    position: absolute; z-index: 1; top: 0; bottom: 0; margin: 0;
+    right: calc(var(--proof-w) - 8px);
+    width: min(38vw, 540px); height: auto; pointer-events: none;
+  }
+  .hero-portrait img {
+    width: 100%; height: 100%; object-fit: contain; object-position: 36% center;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 76%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 76%, transparent 100%);
+  }
+  .resume-alt { margin: 14px 0 0; }
+  .resume-alt a {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted-l); text-decoration: none; border-bottom: 1px solid rgba(20, 21, 28, 0.28); padding-bottom: 2px;
+  }
+  .resume-alt a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .stage-bar, .contact-links {
+    display: flex; justify-content: space-between; gap: 16px; align-items: baseline;
+  }
+  .dek { max-width: 28ch; font-size: clamp(1.15rem, 1.6vw, 1.45rem); letter-spacing: -0.03em; line-height: 1.25; font-weight: 560; }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .proof {
+    position: absolute; z-index: 3; right: var(--proof-gap); bottom: clamp(18px, 3.5vh, 36px);
+    width: var(--proof-w);
+    background: var(--ink); color: var(--paper); border-radius: 22px;
+    padding: clamp(22px, 2vw, 32px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 16px 36px rgba(28, 22, 58, 0.16);
+    transition: transform 0.5s var(--ease);
+  }
+  .proof:hover { transform: translateY(-4px); }
+  .proof-stat {
+    font-size: clamp(3.4rem, 4.6vw, 5rem); font-weight: 800;
+    letter-spacing: -0.065em; line-height: 0.84; color: #e4d8ff;
+  }
+  .proof-sub { margin-top: 8px; color: #c9c4d6; font-size: 15px; }
+  .proof-rows { margin-top: 8px; }
+  .proof-rows div {
+    display: grid; grid-template-columns: 78px 1fr; gap: 12px; align-items: baseline;
+    padding: 13px 0; border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .proof-rows dt {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #cfc4ff; font-weight: 400;
+  }
+  .proof-rows dd { margin: 0; font-weight: 650; letter-spacing: -0.03em; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 0 18px; border-radius: 999px; text-decoration: none;
+    font-weight: 680; letter-spacing: -0.03em; font-size: 15px;
+    transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+  }
+  .btn svg { width: 16px; height: 16px; }
+  .btn-ink { background: var(--ink); color: #fff; }
+  .btn-ink:hover { background: #2a2c3a; }
+  .btn-line { color: var(--ink); box-shadow: inset 0 0 0 1px rgba(20, 21, 28, 0.35); }
+  .btn-line:hover { background: var(--ink); color: #fff; }
+
+  .ledger {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    padding: 8px clamp(16px, 3vw, 40px) 10px;
+  }
+  .ledger a {
+    text-decoration: none; padding: 22px 22px 22px 0; display: grid; gap: 6px;
+    border-top: 1px solid var(--line);
+  }
+  .ledger a + a { padding-left: 22px; }
+  .ledger .label { color: #cfc4ff; }
+  .ledger strong { font-size: clamp(1.3rem, 2vw, 1.7rem); letter-spacing: -0.04em; font-weight: 720; }
+  .ledger span:last-child { color: var(--muted); font-size: 14.5px; max-width: 36ch; }
+  .ledger a:hover strong { color: #e4daff; }
+
+  .marquee { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .marquee-track { display: flex; width: max-content; }
+  .marquee-group { display: flex; gap: 0; margin: 0; padding: 12px 0; }
+  .marquee-group span {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); padding: 0 22px;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .marquee-track { animation: ticker 42s linear infinite; }
+  }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* Build */
+  .build-grid {
+    display: grid; grid-template-columns: 1.15fr 0.9fr 1fr; gap: 12px; align-items: stretch;
+  }
+  .bcard {
+    border-radius: 22px; padding: clamp(20px, 2vw, 28px); color: var(--ink);
+    min-height: 440px; display: flex; flex-direction: column; gap: 14px;
+    background-size: 160% 160%; background-position: 10% 20%;
+    transition: background-position 0.7s var(--ease), transform 0.5s var(--ease);
+  }
+  .bcard:hover { background-position: 80% 70%; transform: translateY(-4px); }
+  .bcard:nth-child(2) { margin-top: 48px; }
+  .bcard:nth-child(3) { margin-top: 16px; }
+  .bcard-1 { background-image: linear-gradient(155deg, #f3e9ff, #c9a8ff 58%, #d9ccff); }
+  .bcard-2 { background-image: linear-gradient(200deg, #e7f0ff, #a9c0ff 62%, #d0e2ff); }
+  .bcard-3 { background-image: linear-gradient(145deg, #f7f4ff, #c5d4ff 48%, #e4d4ff); }
+  .bcard .label { color: var(--muted-l); }
+  .bcard h3 { font-size: clamp(1.8rem, 2.5vw, 2.7rem); letter-spacing: -0.045em; line-height: 0.98; font-weight: 780; margin-top: auto; }
+  .bcard p { font-size: 15.5px; }
+  .tech {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; line-height: 1.55;
+    color: var(--muted-l); text-transform: uppercase;
+  }
+
+  /* AI */
+  .pull {
+    font-size: clamp(1.7rem, 3.1vw, 2.7rem); letter-spacing: -0.045em; line-height: 1.12;
+    font-weight: 680; max-width: 22ch;
+  }
+  .ai-intro { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 28px; align-items: end; margin-bottom: 18px; }
+  .ai-item { border-top: 1px solid var(--line); }
+  .ai-item:last-of-type { border-bottom: 1px solid var(--line); }
+  .ai-item summary {
+    display: grid; grid-template-columns: 48px minmax(0, 1.3fr) minmax(0, 1fr) 28px;
+    gap: 12px; align-items: center; padding: 20px 0; cursor: pointer; list-style: none;
+  }
+  .ai-item summary::-webkit-details-marker { display: none; }
+  .ai-item summary .label { color: #cfc4ff; }
+  .ai-name { font-size: clamp(1.55rem, 2.8vw, 2.5rem); font-weight: 760; letter-spacing: -0.045em; line-height: 1; }
+  .ai-kind { color: var(--muted); font-size: 15px; }
+  .plus { width: 18px; height: 18px; position: relative; justify-self: end; }
+  .plus::before, .plus::after {
+    content: ""; position: absolute; background: currentColor; left: 50%; top: 50%;
+    transition: transform 0.35s var(--ease);
+  }
+  .plus::before { width: 18px; height: 1.5px; transform: translate(-50%, -50%); }
+  .plus::after { width: 1.5px; height: 18px; transform: translate(-50%, -50%); }
+  .ai-item[open] .plus::after { transform: translate(-50%, -50%) scaleY(0); }
+  .ai-item summary:hover .ai-name { color: #e4daff; }
+  .ai-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s var(--ease); }
+  .ai-item[open] .ai-panel { grid-template-rows: 1fr; }
+  .ai-panel-in { overflow: hidden; }
+  .ai-panel-body {
+    margin: 0 0 18px; border-radius: 20px; color: var(--ink);
+    padding: clamp(18px, 2.4vw, 32px);
+    background: linear-gradient(128deg, #f6f0ff, #cbb6ff 40%, #c5d6ff);
+  }
+  .ai-cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 40px); }
+  .ai-cols h3 { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--mono); font-weight: 500; color: var(--muted-l); margin-bottom: 8px; }
+  .ai-cols p { font-size: 1.05rem; letter-spacing: -0.02em; }
+  .ai-panel .tech { margin-top: 18px; }
+  .hood { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .hood span {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; color: var(--muted);
+  }
+
+  /* Work */
+  .work-index { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 8px; }
+  .work-index a { text-decoration: none; font-weight: 680; letter-spacing: -0.03em; color: var(--muted); }
+  .work-index a:hover, .work-index a.is-active { color: #fff; }
+  .project { padding: 0 var(--frame) clamp(10px, 2vw, 22px); }
+  .stage {
+    position: relative; overflow: hidden; color: var(--ink);
+    min-height: clamp(540px, 78vh, 860px);
+    border-radius: clamp(18px, 2vw, 28px);
+    padding: clamp(18px, 2.4vw, 36px);
+    display: flex; flex-direction: column;
+    background-size: 150% 150%; background-position: 20% 30%;
+    transition: background-position 0.8s var(--ease);
+  }
+  .stage:hover { background-position: 70% 60%; }
+  .stage-a { background-image: linear-gradient(148deg, #eadcff 0%, #c4a6ff 34%, #9eb4ff 70%, #d5e6ff 100%); }
+  .stage-b { background-image: linear-gradient(165deg, #e8f1ff 0%, #b7cbff 42%, #c3b6ff 80%, #f2ecff 100%); }
+  .stage-c { background-image: linear-gradient(200deg, #f5f8ff 0%, #d5e4ff 42%, #ddccff 100%); }
+  .stage-a .stage-main { position: relative; align-items: end; min-height: 420px; }
+  .stage-a .stage-name { grid-column: 1 / -1; font-size: clamp(5.4rem, 18vw, 16rem); }
+  .stage-a .ui-card {
+    position: absolute; left: 56%; bottom: 8%; width: min(340px, 38%);
+  }
+  .stage-bar .label { color: var(--muted-l); }
+  .stage-main { flex: 1; display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 20px; align-items: end; padding: 18px 0; }
+  .stage-name { font-weight: 800; letter-spacing: -0.065em; line-height: 0.82; font-size: clamp(4.6rem, 12.5vw, 11.5rem); }
+  .stage-b .stage-name, .stage-c .stage-name { font-size: clamp(3.2rem, 6.4vw, 6.4rem); }
+  .stage-sub { display: block; margin-top: 10px; font-size: clamp(1.2rem, 2vw, 1.7rem); font-weight: 640; letter-spacing: -0.04em; }
+  .ui-card {
+    background: #f7f8fc; border-radius: 18px; padding: 16px 16px 8px;
+    border: 1px solid rgba(20, 21, 28, 0.08);
+    box-shadow: 0 14px 30px rgba(28, 22, 58, 0.08);
+    transition: transform 0.6s var(--ease);
+  }
+  .stage:hover .ui-card { transform: translateY(-8px); }
+  .ui-card .label { color: var(--muted-l); }
+  .ui-card ul { margin-top: 8px; }
+  .ui-card li {
+    display: flex; justify-content: space-between; gap: 12px;
+    padding: 9px 0; border-top: 1px solid var(--line-l); font-weight: 640; letter-spacing: -0.02em;
+  }
+  .ui-card em { font-style: normal; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: var(--muted-l); }
+  .index-list { display: grid; align-content: end; }
+  .index-list li {
+    font-size: clamp(1.5rem, 2.6vw, 2.3rem); font-weight: 740; letter-spacing: -0.045em;
+    border-top: 1px solid rgba(20, 21, 28, 0.16); padding: 8px 0; line-height: 1.1;
+  }
+  .stage-foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+  .stage-stat strong { display: block; font-size: clamp(2.4rem, 4vw, 3.6rem); letter-spacing: -0.06em; line-height: 0.9; font-weight: 800; }
+  .stage-stat span, .stage-note { font-size: 14px; max-width: 36ch; }
+  .switch { display: flex; gap: 8px; }
+  .switch a {
+    width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center;
+    text-decoration: none; color: var(--ink); background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(20, 21, 28, 0.18); font-size: 18px;
+    transition: background 0.3s var(--ease), color 0.3s var(--ease);
+  }
+  .switch a:hover { background: var(--ink); color: #fff; }
+  .giant-date { font-size: clamp(4rem, 12vw, 10rem); font-weight: 800; letter-spacing: -0.07em; line-height: 0.82; }
+  .project-copy {
+    display: grid; grid-template-columns: 0.72fr 1.28fr; gap: clamp(18px, 3vw, 48px);
+    padding: 26px 8px 48px; color: var(--paper);
+  }
+  .roleline { color: #ddd8f0; margin: 6px 0 10px; }
+  .meta-dl { display: grid; gap: 12px; }
+  .meta-dl div { display: grid; gap: 2px; }
+  .meta-dl dt { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-dl dd { margin: 0; font-weight: 650; letter-spacing: -0.02em; }
+  .ticks li { position: relative; padding-left: 16px; margin: 9px 0; color: #ddd9ea; }
+  .ticks li::before {
+    content: ""; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; border-radius: 50%; background: #c9b6ff;
+  }
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .jump a {
+    text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; font-size: 14px;
+    transition: background 0.3s var(--ease), color 0.3s var(--ease);
+  }
+  .jump a:hover { background: #f4f2fb; color: var(--ink); }
+
+  /* Experience */
+  .exp-item {
+    display: grid; grid-template-columns: minmax(120px, 190px) 1fr; gap: clamp(12px, 3vw, 36px);
+    padding: 28px 0; border-top: 1px solid var(--line);
+  }
+  .exp-year { font-size: clamp(2.8rem, 5vw, 4.6rem); font-weight: 800; letter-spacing: -0.06em; line-height: 0.85; color: #ddd0ff; }
+  .exp-item .label { color: var(--muted); display: block; margin-top: 8px; }
+  .exp-item h3 { font-size: clamp(1.5rem, 2.4vw, 2.1rem); letter-spacing: -0.04em; font-weight: 740; }
+  .exp-item ul { margin-top: 10px; }
+  .exp-item li { color: #ddd9ea; margin: 6px 0; }
+  .cert {
+    margin-top: 22px; border-radius: 22px; color: var(--ink);
+    padding: clamp(22px, 3vw, 42px);
+    background: linear-gradient(128deg, #efe6ff, #c9d6ff 55%, #e7f1ff);
+  }
+  .cert .label { color: var(--muted-l); }
+  .cert strong { display: block; font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.05em; line-height: 0.95; font-weight: 800; margin: 10px 0 12px; }
+  .cert p { max-width: 46rem; }
+
+  /* Skills */
+  .skills-wrap { padding: 0 var(--frame) clamp(28px, 4vw, 48px); }
+  .skills-canvas {
+    border-radius: clamp(18px, 2vw, 28px); color: var(--ink);
+    padding: clamp(28px, 4vw, 56px) clamp(16px, 3vw, 40px) clamp(20px, 3vw, 36px);
+    background-color: #cddcff;
+    background-image:
+      radial-gradient(700px 420px at 0% 0%, #f3e9ff 0%, rgba(243, 233, 255, 0) 58%),
+      linear-gradient(128deg, #f7f2ff 0%, #d0b8ff 36%, #b7cbff 68%, #e7f1ff 100%);
+  }
+  .skills-canvas .sec-head .label { color: var(--muted-l); }
+  .skills-canvas .lead { color: var(--muted-l); }
+  .skill-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .skill {
+    background: #f7f8fc; border-radius: 18px; padding: 18px 18px 16px;
+    border: 1px solid rgba(20, 21, 28, 0.06);
+    background-image: linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0));
+    transition: transform 0.45s var(--ease);
+  }
+  .skill:hover { transform: translateY(-3px); }
+  .skill-fe { grid-column: span 2; background: #fbfbfe; }
+  .skill-ai { grid-column: span 2; background: var(--ink); color: var(--paper); }
+  .skill-be, .skill-practice { grid-column: span 2; }
+  .skill h3 { font-size: clamp(1.6rem, 2.2vw, 2.1rem); letter-spacing: -0.04em; font-weight: 760; margin-bottom: 12px; }
+  .skill ul { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill li {
+    border: 1px solid rgba(20, 21, 28, 0.14); border-radius: 999px; padding: 6px 10px; font-size: 14px;
+  }
+  .skill-ai li { border-color: rgba(255, 255, 255, 0.2); }
+
+  /* About */
+  .about-grid {
+    display: grid; gap: 12px;
+    grid-template-columns: 1.05fr 0.95fr 1fr;
+    grid-template-areas:
+      "years role role"
+      "years scale scale"
+      "p1 p1 p2"
+      "p3 p4 p4";
+  }
+  .apanel {
+    border-radius: 22px; padding: clamp(18px, 2vw, 28px); color: var(--ink);
+    min-height: 180px; display: flex; flex-direction: column; gap: 8px;
+    background-size: 160% 160%; background-position: 20% 20%;
+    transition: background-position 0.7s var(--ease), transform 0.45s var(--ease);
+  }
+  .apanel:hover { background-position: 80% 70%; transform: translateY(-3px); }
+  .apanel .label { color: var(--muted-l); }
+  .apanel-years { grid-area: years; background-image: linear-gradient(165deg, #efe4ff, #c9a6ff 72%, #ddd0ff); }
+  .apanel-role { grid-area: role; background-image: linear-gradient(125deg, #f5f8ff, #c9dcff); }
+  .apanel-scale { grid-area: scale; background-image: linear-gradient(150deg, #c7b0ff, #a9beff 48%, #e3eeff); }
+  .apanel-p1 { grid-area: p1; background-image: linear-gradient(160deg, #f8f5ff, #e0d0ff); }
+  .apanel-p2 { grid-area: p2; background: #f7f8fc; }
+  .apanel-p3 { grid-area: p3; background: var(--ink); color: var(--paper); }
+  .apanel-p4 { grid-area: p4; background-image: linear-gradient(200deg, #e7f0ff, #d5e0ff); }
+  .apanel-p3 .label { color: #d5c9ff; }
+  .huge { font-size: clamp(4.6rem, 8.4vw, 8rem); font-weight: 800; letter-spacing: -0.07em; line-height: 0.82; margin-top: auto; }
+  .apanel h3 { font-size: clamp(1.45rem, 2vw, 2rem); letter-spacing: -0.04em; line-height: 1.02; font-weight: 750; }
+  .apanel-role h3 { font-size: clamp(1.8rem, 3vw, 2.8rem); }
+  .voice {
+    margin-top: clamp(28px, 4vw, 48px);
+    font-size: clamp(2rem, 4.4vw, 4.15rem);
+    font-weight: 780; letter-spacing: -0.05em; line-height: 0.96;
+    max-width: 16ch;
+  }
+
+  /* Contact */
+  .contact { padding: 10px var(--frame) clamp(28px, 4vw, 48px); }
+  .contact-canvas {
+    position: relative; overflow: hidden; color: var(--ink);
+    border-radius: clamp(18px, 2vw, 28px);
+    min-height: min(78vh, 760px);
+    padding: clamp(24px, 4vw, 56px);
+    display: flex; flex-direction: column; justify-content: space-between; gap: 28px;
+    background-color: #cddcff;
+    background-image:
+      radial-gradient(680px 480px at 92% 8%, #f4ebff 0%, rgba(244, 235, 255, 0) 58%),
+      linear-gradient(128deg, #f6f0ff 0%, #c9b0ff 38%, #aec4ff 66%, #e5f0ff 100%);
+  }
+  .contact-canvas .label { color: var(--muted-l); }
+  .contact-canvas .lead { color: var(--muted-l); }
+  .email {
+    position: relative; z-index: 1; display: inline-block; text-decoration: none; font-weight: 800;
+    letter-spacing: -0.05em; line-height: 0.95; color: var(--ink);
+    font-size: clamp(1.35rem, 4.6vw, 4.4rem); max-width: 100%;
+  }
+  .email:hover { color: #2a2444; }
+  .contact-links { position: relative; z-index: 1; flex-wrap: wrap; }
+  .contact-links a { text-decoration: none; font-weight: 680; letter-spacing: -0.03em; border-bottom: 1px solid rgba(20, 21, 28, 0.35); padding-bottom: 2px; }
+  .contact-links a:hover { border-bottom-color: transparent; }
+  .contact-meta { position: relative; z-index: 1; color: var(--muted-l); }
+  .watermark {
+    position: absolute; left: -1%; bottom: -8%; z-index: 0; pointer-events: none;
+    font-size: clamp(5rem, 18vw, 16rem); font-weight: 800; letter-spacing: -0.08em; line-height: 0.8;
+    text-transform: uppercase; color: rgba(20, 21, 28, 0.06); white-space: nowrap;
+  }
+
+  footer { padding: 8px clamp(16px, 3vw, 40px) 28px; }
+  .foot { display: flex; justify-content: space-between; gap: 12px; align-items: center; color: var(--muted); font-size: 14px; }
+  .foot a { color: var(--paper); text-decoration: none; }
+
+  @media (max-width: 1100px) {
+    .build-grid, .about-grid, .ai-intro, .project-copy, .stage-main, .skill-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid {
+      grid-template-areas:
+        "years role"
+        "scale scale"
+        "p1 p2"
+        "p3 p4";
+    }
+    .bcard:nth-child(2), .bcard:nth-child(3) { margin-top: 0; }
+    .skill-fe, .skill-ai, .skill-be, .skill-practice { grid-column: span 2; }
+  }
+
+  @media (max-width: 1280px) and (min-width: 1101px) {
+    .hero-canvas { --proof-w: 350px; }
+    .hero-portrait { width: min(36vw, 480px); }
+    .hero-copy { width: min(50%, 560px); }
+  }
+  @media (max-width: 1100px) {
+    .hero-canvas {
+      display: flex; flex-direction: column; padding-bottom: 22px; min-height: 0;
+      --proof-w: 100%;
+    }
+    .hero-copy { display: contents; }
+    .hero-kicker { order: 1; }
+    .hero-canvas h1 { order: 2; }
+    .hero-copy .dek { order: 3; margin-top: 12px; }
+    .hero-portrait {
+      order: 4; position: relative; top: auto; right: auto; bottom: auto;
+      width: min(100%, 460px); height: auto; aspect-ratio: 1312 / 1199;
+      margin: 8px 0 0; align-self: center;
+    }
+    .hero-portrait img {
+      object-fit: contain; object-position: center center;
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 5%, #000 96%, transparent 100%);
+      mask-image: linear-gradient(180deg, transparent 0%, #000 5%, #000 96%, transparent 100%);
+    }
+    .proof { order: 5; position: relative; right: auto; bottom: auto; width: 100%; margin-top: 8px; }
+    .cta { order: 6; }
+    .resume-alt { order: 7; }
+    .hero-kicker, .hero-canvas h1, .hero-copy .dek, .cta, .resume-alt { width: 100%; }
+    .hero-role { font-size: clamp(2.85rem, 12vw, 4.8rem); }
+  }
+
+  @media (max-width: 820px) {
+    .stage-a .ui-card { position: relative; right: auto; bottom: auto; width: 100%; }
+    .stage-foot, .contact-links, .foot { flex-direction: column; align-items: flex-start; }
+    .ledger, .build-grid, .ai-intro, .ai-cols, .project-copy, .stage-main, .exp-item, .skill-grid, .about-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-grid { grid-template-areas: "years" "role" "scale" "p1" "p2" "p3" "p4"; }
+    .ledger a + a { padding-left: 0; }
+    .ai-item summary { grid-template-columns: 36px 1fr 22px; }
+    .ai-kind { grid-column: 2; grid-row: 2; }
+    .ai-name { grid-column: 2; grid-row: 1; }
+    .plus { grid-column: 3; grid-row: 1 / span 2; }
+    .skill-fe, .skill-ai, .skill-be, .skill-data, .skill-cloud, .skill-practice { grid-column: auto; }
+    .bcard { min-height: 0; }
+    .stage { min-height: 0; }
+    .stage-main { align-items: start; }
+    .voice { max-width: 12em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><span></span></div>
+  <a class="sr" href="#work">Skip to work</a>
+
+  <header class="nav" id="top">
+    <a class="brand" href="#top">Kirti Yadav</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a data-nav href="#work">Work</a>
+      <a data-nav href="#ai">AI</a>
+      <a data-nav href="#experience">Experience</a>
+      <a data-nav href="#skills">Skills</a>
+      <a data-nav href="#about">About</a>
+      <a href="Kirti_Yadav_3Yr_Exp_Full-Stack.pdf" download>Resume</a>
+      <a data-nav href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="burger" aria-hidden="true"></span>
+      <b>Menu</b>
+    </button>
+  </header>
+
+  <div class="menu" id="menu" hidden>
+    <a class="mlink" data-nav href="#work">Work</a>
+    <a class="mlink" data-nav href="#ai">AI</a>
+    <a class="mlink" data-nav href="#experience">Experience</a>
+    <a class="mlink" data-nav href="#skills">Skills</a>
+    <a class="mlink" data-nav href="#about">About</a>
+    <a class="mlink" href="Kirti_Yadav_3Yr_Exp_Full-Stack.pdf" download>Resume</a>
+    <a class="mlink" data-nav href="#contact">Contact</a>
+    <div class="menu-foot">
+      <span class="label">Full-stack AI engineer</span>
+      <a href="Kirti_Yadav_AI_Engineer.pdf" download>AI Engineer resume</a>
+      <a href="mailto:yadavkirti7745@gmail.com">yadavkirti7745@gmail.com</a>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-canvas">
+        <div class="hero-copy">
+          <p class="label hero-kicker">Full-stack · AI · Product</p>
+          <h1>
+            <span class="line"><span class="line-in hero-id">Kirti Yadav</span></span>
+            <span class="line"><span class="line-in hero-role">Full-Stack</span></span>
+            <span class="line"><span class="line-in hero-role">AI Engineer</span></span>
+          </h1>
+          <p class="dek">I build AI-powered products and the full-stack systems behind them.</p>
+          <div class="cta">
+            <a class="btn btn-ink magnet" href="#work">See the work
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            </a>
+            <a class="btn btn-line magnet" href="#contact">Get in touch</a>
+            <a class="btn btn-line magnet" href="Kirti_Yadav_3Yr_Exp_Full-Stack.pdf" download>Download resume</a>
+          </div>
+          <p class="resume-alt"><a href="Kirti_Yadav_3Yr_Exp_Full-Stack.pdf" download>Full-stack resume</a> · <a href="Kirti_Yadav_AI_Engineer.pdf" download>AI Engineer resume</a></p>
+        </div>
+        <figure class="hero-portrait">
+          <img src="public/images/kirti-hero-new.png" alt="Kirti Yadav">
+        </figure>
+        <aside class="proof" aria-label="At a glance">
+          <div class="proof-in">
+            <p class="proof-stat"><span data-count="175" data-suffix="K+">175K+</span></p>
+            <p class="proof-sub">active users on Crayon Jobs</p>
+            <dl class="proof-rows">
+              <div><dt>Since</dt><dd>May 2025</dd></div>
+              <div><dt>Span</dt><dd>3+ years building software</dd></div>
+              <div><dt>Based</dt><dd>Indore, India</dd></div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <div class="ledger">
+      <a href="#crayon">
+        <span class="label">01 — Crayon</span>
+        <strong>Hiring, with AI in the workflow</strong>
+        <span>Job Spec Jerry, Resume Reggie, Ted and Thuli, and the Crayon ATS. 175K+ active users.</span>
+      </a>
+      <a href="#bridge">
+        <span class="label">02 — The Bridge</span>
+        <strong>A daily thought-pattern interruption</strong>
+        <span>Lead frontend for the Drop, the 144-second Pause, The Crossing, and the admin side.</span>
+      </a>
+      <a href="#experience">
+        <span class="label">03 — The foundation</span>
+        <strong>Frontend, API, product</strong>
+        <span>React, Next.js, TypeScript, and Node. Production interfaces, auth, and the systems around them.</span>
+      </a>
+    </div>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <p class="marquee-group">
+          <span>Job Spec Jerry</span><span>Resume Reggie</span><span>Ted</span><span>Thuli</span><span>Crayon ATS</span><span>The Bridge</span><span>The Pause</span><span>Next.js</span><span>TypeScript</span><span>Tailwind CSS</span><span>175K+ users</span>
+        </p>
+        <p class="marquee-group">
+          <span>Job Spec Jerry</span><span>Resume Reggie</span><span>Ted</span><span>Thuli</span><span>Crayon ATS</span><span>The Bridge</span><span>The Pause</span><span>Next.js</span><span>TypeScript</span><span>Tailwind CSS</span><span>175K+ users</span>
+        </p>
+      </div>
+    </div>
+    <p class="sr">Work includes Job Spec Jerry, Resume Reggie, Ted and Thuli, the Crayon ATS, and semantic search on a platform with 175K+ active users, plus lead frontend work on The Bridge: the Drop, the 144-second Pause, The Crossing, Planks, The Locks, and The Collective Pulse.</p>
+
+    <section id="build" aria-labelledby="build-title">
+      <div class="sec">
+        <header class="sec-head">
+          <p class="label">02 — What I build</p>
+          <h2 class="display" id="build-title">Frontend, backend,<br>and AI.</h2>
+          <p class="lead">I build the product around the model. Frontend craft, the API, and the AI feature land together — from the requirement to something people can use.</p>
+        </header>
+        <div class="build-grid">
+          <article class="bcard bcard-1">
+            <p class="label">01 — Frontend</p>
+            <h3>Production interfaces people use.</h3>
+            <p>React.js, Next.js, and TypeScript. Dashboards, authentication flows, role-based workflows, responsive layouts, and application state.</p>
+            <p class="tech">React.js · Next.js · TypeScript · JavaScript · Redux Toolkit · React Query · HTML · CSS · Tailwind · Material UI</p>
+          </article>
+          <article class="bcard bcard-2">
+            <p class="label">02 — Backend</p>
+            <h3>APIs, auth, and the data behind the screen.</h3>
+            <p>Node.js and Express. REST APIs, JWT authentication and authorization, MongoDB, third-party integrations, and AWS when the app has to stay up.</p>
+            <p class="tech">Node.js · Express.js · REST APIs · JWT · MongoDB · Mongoose · SQL · AWS</p>
+          </article>
+          <article class="bcard bcard-3">
+            <p class="label">03 — AI</p>
+            <h3>Models wired into real workflows.</h3>
+            <p>LLM integration, prompt engineering, structured outputs, RAG, embeddings, and vector search — shipped as product behavior, with the frontend and API around them.</p>
+            <p class="tech">Python · LLM APIs · Prompt engineering · RAG · Embeddings · Vector search · AI workflows</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai" aria-labelledby="ai-title">
+      <div class="sec" style="padding-top:0">
+        <header class="sec-head">
+          <p class="label">03 — Crayon · AI in the product</p>
+          <h2 class="display" id="ai-title">AI that shows up in the hiring flow.</h2>
+        </header>
+        <div class="ai-intro">
+          <p class="pull">On Crayon, a person describes a role, uploads a CV, or sits an interview. The AI turns that into something the hiring workflow can use.</p>
+          <p class="lead">I worked on these experiences inside the live product — integrating them, not designing the whole platform. Open one for what it does, my part, and why it is in the product.</p>
+        </div>
+
+        <details class="ai-item" id="jerry" open>
+          <summary>
+            <span class="label">01</span>
+            <span class="ai-name">Job Spec Jerry</span>
+            <span class="ai-kind">Job specs</span>
+            <span class="plus" aria-hidden="true"></span>
+          </summary>
+          <div class="ai-panel">
+            <div class="ai-panel-in">
+              <div class="ai-panel-body">
+                <div class="ai-cols">
+                  <div>
+                    <h3>What it does</h3>
+                    <p>Someone describes a role in plain English. Jerry builds the job spec. They edit it until it is right, then post it. On the product, Jerry turns a plain-English hiring need into a usable role brief.</p>
+                    <p>That spec is what gets posted and managed, so the AI output has to be editable and ready for the hiring flow.</p>
+                  </div>
+                  <div>
+                    <h3>My role</h3>
+                    <p>I built this AI-driven experience: LLM workflows, prompt engineering, structured outputs, and the frontend and API path around them, then integrated it into production.</p>
+                  </div>
+                </div>
+                <p class="tech">LLM APIs · Prompt engineering · Structured outputs · React · REST</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="ai-item" id="reggie">
+          <summary>
+            <span class="label">02</span>
+            <span class="ai-name">Resume Reggie</span>
+            <span class="ai-kind">Candidate profiles</span>
+            <span class="plus" aria-hidden="true"></span>
+          </summary>
+          <div class="ai-panel">
+            <div class="ai-panel-in">
+              <div class="ai-panel-body">
+                <div class="ai-cols">
+                  <div>
+                    <h3>What it does</h3>
+                    <p>A person uploads an existing CV. Reggie turns it into a structured Crayon profile they can use when applying, and that employers can find.</p>
+                    <p>The profile replaces retyping the same history into every application.</p>
+                  </div>
+                  <div>
+                    <h3>My role</h3>
+                    <p>I integrated Reggie into the production user flow: the interface, the API communication, and delivery through to a profile people actually use.</p>
+                  </div>
+                </div>
+                <p class="tech">LLM integration · React · REST APIs · Production workflows</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="ai-item" id="search">
+          <summary>
+            <span class="label">03</span>
+            <span class="ai-name">Search and discovery</span>
+            <span class="ai-kind">Semantic search</span>
+            <span class="plus" aria-hidden="true"></span>
+          </summary>
+          <div class="ai-panel">
+            <div class="ai-panel-in">
+              <div class="ai-panel-body">
+                <div class="ai-cols">
+                  <div>
+                    <h3>What it does</h3>
+                    <p>On Crayon, candidates browse jobs from their skills and preferences. Employers reach an existing candidate network instead of starting every search from zero.</p>
+                    <p>Finding a role or a person has to work inside that network, not as a separate search demo.</p>
+                  </div>
+                  <div>
+                    <h3>My role</h3>
+                    <p>I worked with RAG, embeddings, vector search, and indexing concepts so retrieval inside these experiences can use context, not only an exact keyword.</p>
+                  </div>
+                </div>
+                <p class="tech">RAG · Embeddings · Vector search · Indexing · LLM integration</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="ai-item" id="interviews">
+          <summary>
+            <span class="label">04</span>
+            <span class="ai-name">Ted and Thuli</span>
+            <span class="ai-kind">AI interviews</span>
+            <span class="plus" aria-hidden="true"></span>
+          </summary>
+          <div class="ai-panel">
+            <div class="ai-panel-in">
+              <div class="ai-panel-body">
+                <div class="ai-cols">
+                  <div>
+                    <h3>What it does</h3>
+                    <p>Where a role requires it, Ted conducts an AI-led screening interview. Thuli is the alternate AI interview experience. Candidates complete a Ted or Thuli interview on those roles.</p>
+                    <p>The interview sits in the same flow as the application, so a person can track what happens next.</p>
+                  </div>
+                  <div>
+                    <h3>My role</h3>
+                    <p>I worked on the AI video interview experiences and their path into production: the frontend, API communication, asynchronous processing, error states, and end-to-end delivery.</p>
+                  </div>
+                </div>
+                <p class="tech">AI workflows · Async processing · React · REST APIs</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="ai-item" id="ats">
+          <summary>
+            <span class="label">05</span>
+            <span class="ai-name">Crayon ATS</span>
+            <span class="ai-kind">Hiring workflow</span>
+            <span class="plus" aria-hidden="true"></span>
+          </summary>
+          <div class="ai-panel">
+            <div class="ai-panel-in">
+              <div class="ai-panel-body">
+                <div class="ai-cols">
+                  <div>
+                    <h3>What it does</h3>
+                    <p>The Crayon ATS is where applicants, stages, and communication live. Employers manage roles and pipelines there, alongside the candidate network and AI tools.</p>
+                    <p>Jerry, Reggie, and the interviews only matter if the result lands in that workflow.</p>
+                  </div>
+                  <div>
+                    <h3>My role</h3>
+                    <p>I worked on ATS management workflows and the AI-assisted parts of that flow, across the frontend and the APIs next to them.</p>
+                  </div>
+                </div>
+                <p class="tech">AI workflows · REST · Role-based product flows · React · Node</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <div class="hood" aria-label="Engineering underneath the features">
+          <span>Prompt engineering</span>
+          <span>Structured outputs</span>
+          <span>Context-aware interactions</span>
+          <span>RAG</span>
+          <span>Embeddings</span>
+          <span>Vector search</span>
+          <span>Async processing</span>
+          <span>Error states</span>
+          <span>API integration</span>
+          <span>Production debugging</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" aria-labelledby="work-title">
+      <div class="sec" style="padding-bottom:12px">
+        <header class="sec-head">
+          <p class="label">04 — Selected work</p>
+          <h2 class="display" id="work-title">Crayon and The Bridge.</h2>
+          <p class="lead">Two production products. Crayon is an AI hiring platform at scale. The Bridge is an AI product experience I led on the frontend. Earlier roles are below.</p>
+          <nav class="work-index" aria-label="Selected work">
+            <a href="#crayon">01 Crayon</a>
+            <a href="#bridge">02 The Bridge</a>
+            <a href="#brain">03 Brain Inventory</a>
+            <a href="#client">04 Client work</a>
+          </nav>
+        </header>
+      </div>
+
+      <article class="project" id="crayon">
+        <div class="stage stage-a">
+          <div class="stage-bar">
+            <p class="label">Senior Software Developer, AI / Full Stack · May 2025 — Present</p>
+            <p class="label">01 / 04</p>
+          </div>
+          <div class="stage-main">
+            <h3 class="stage-name">Crayon<span class="stage-sub">Jobs Platform</span></h3>
+            <div class="ui-card">
+              <p class="label">Shipped on the platform</p>
+              <ul>
+                <li>Job Spec Jerry <em>Live</em></li>
+                <li>Resume Reggie <em>Live</em></li>
+                <li>Ted <em>Live</em></li>
+                <li>Thuli <em>Live</em></li>
+                <li>Crayon ATS <em>Live</em></li>
+              </ul>
+            </div>
+          </div>
+          <div class="stage-foot">
+            <p class="stage-stat">
+              <strong><span data-count="175" data-suffix="K+">175K+</span></strong>
+              <span>active users on the platform</span>
+            </p>
+            <div class="switch">
+              <a href="#client" aria-label="Previous project, independent client work">←</a>
+              <a href="#bridge" aria-label="Next project, The Bridge">→</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-copy">
+          <div>
+            <p class="dek" style="color:#f4f5fb">A hiring platform. Employers post roles, manage applicants in one ATS, and reach a candidate network. AI sits at specific points in that flow.</p>
+            <dl class="meta-dl" style="margin-top:18px">
+              <div><dt>Role</dt><dd>Senior Software Developer, AI / Full Stack</dd></div>
+              <div><dt>Engagement</dt><dd>Freelance · Remote · May 2025 — Present</dd></div>
+              <div><dt>Product</dt><dd><a href="https://crayon.jobs/" target="_blank" rel="noopener noreferrer">crayon.jobs</a></dd></div>
+              <div><dt>Stack</dt><dd>React.js, Next.js, TypeScript, Node.js, MongoDB</dd></div>
+            </dl>
+          </div>
+          <div>
+            <ul class="ticks">
+              <li>Built and scaled production features for a job platform serving 175K+ active users.</li>
+              <li>Developed REST APIs between the frontend, server logic, and third-party integrations.</li>
+              <li>Implemented authentication, authorization, dashboards, and role-based workflows.</li>
+              <li>Worked with MongoDB and Mongoose for application data and API-driven workflows.</li>
+              <li>Integrated Job Spec Jerry, Resume Reggie, AI video interviews, semantic search, and ATS management workflows.</li>
+            </ul>
+            <div class="jump">
+              <a href="#jerry">Job Spec Jerry</a>
+              <a href="#reggie">Resume Reggie</a>
+              <a href="#interviews">Ted and Thuli</a>
+              <a href="#search">Search</a>
+              <a href="#ats">Crayon ATS</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" id="bridge">
+        <div class="stage stage-b">
+          <div class="stage-bar">
+            <p class="label">Lead Frontend Developer</p>
+            <p class="label">02 / 04</p>
+          </div>
+          <div class="stage-main">
+            <h3 class="stage-name">The Bridge<span class="stage-sub">A daily thought-pattern interruption</span></h3>
+            <ul class="index-list">
+              <li>Drop</li>
+              <li>Pause</li>
+              <li>The Crossing</li>
+              <li>The Locks</li>
+              <li>The Collective Pulse</li>
+            </ul>
+          </div>
+          <div class="stage-foot">
+            <p class="stage-note">Public walker experience and the admin side. Next.js, TypeScript, Tailwind CSS.</p>
+            <div class="switch">
+              <a href="#crayon" aria-label="Previous project, Crayon">←</a>
+              <a href="#brain" aria-label="Next project, Brain Inventory">→</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-copy">
+          <div>
+            <p class="dek" style="color:#f4f5fb">Every day a walker gets one Drop, steps into a 144-second Pause, crosses five Planks, and can leave one anonymous thought at The Locks.</p>
+            <dl class="meta-dl" style="margin-top:18px">
+              <div><dt>Role</dt><dd>Lead Frontend Developer</dd></div>
+              <div><dt>Product</dt><dd><a href="https://thebridge144.com/" target="_blank" rel="noopener noreferrer">thebridge144.com</a></dd></div>
+              <div><dt>My stack</dt><dd>Next.js, React, TypeScript, Tailwind CSS</dd></div>
+              <div><dt>Quality</dt><dd>SEO and performance considered throughout</dd></div>
+            </dl>
+          </div>
+          <div>
+            <ul class="ticks">
+              <li>Led the frontend for the public walker experience: the Drop, the Pause, The Crossing, Planks, The Locks, and The Collective Pulse.</li>
+              <li>Built the signed-in walker flows and the admin side of the product.</li>
+              <li>Shipped the Pause as a real AI conversation in the interface: a hard 144-second session, one question at a time, with streamed responses.</li>
+              <li>Built it as a production Next.js experience, with SEO, accessibility, and performance considered throughout.</li>
+            </ul>
+            <div class="jump">
+              <a href="#drop">Drop</a>
+              <a href="#pause">Pause</a>
+              <a href="#crossing">The Crossing</a>
+              <a href="#locks">The Locks</a>
+              <a href="#pulse">The Collective Pulse</a>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 0 8px 36px">
+          <details class="ai-item" id="drop">
+            <summary>
+              <span class="label">01</span>
+              <span class="ai-name">Drop</span>
+              <span class="ai-kind">Once a day</span>
+              <span class="plus" aria-hidden="true"></span>
+            </summary>
+            <div class="ai-panel">
+              <div class="ai-panel-in">
+                <div class="ai-panel-body">
+                  <div class="ai-cols">
+                    <div>
+                      <h3>What it does</h3>
+                      <p>The Drop is the daily question or provocation. It arrives at 13:44 local time. The walker opens The Bridge and reads it. There is one Drop a day, and no feed.</p>
+                    </div>
+                    <div>
+                      <h3>My role</h3>
+                      <p>I led the frontend for how a walker meets that day’s Drop, including the public preview and the signed-in daily experience.</p>
+                    </div>
+                  </div>
+                  <p class="tech">Next.js · React · TypeScript · Tailwind CSS</p>
+                </div>
+              </div>
+            </div>
+          </details>
+          <details class="ai-item" id="pause">
+            <summary>
+              <span class="label">02</span>
+              <span class="ai-name">Pause</span>
+              <span class="ai-kind">144 seconds</span>
+              <span class="plus" aria-hidden="true"></span>
+            </summary>
+            <div class="ai-panel">
+              <div class="ai-panel-in">
+                <div class="ai-panel-body">
+                  <div class="ai-cols">
+                    <div>
+                      <h3>What it does</h3>
+                      <p>A private AI conversation with a hard stop at 144 seconds. The AI is a mirror, not a guru: it challenges and reflects, asks one question at a time, and does not simply agree. Input is capped at 144 characters. Responses stream. Each session uses that day’s editorial package with the Drop.</p>
+                      <p>The conversation is stored without an identity. One Pause a day. It does not extend.</p>
+                    </div>
+                    <div>
+                      <h3>My role</h3>
+                      <p>I led the frontend for the session: the timer, the conversation, and its place in the daily flow. The product calls Anthropic’s Claude through the API, with streaming. That sits in the wider architecture, beside the interface I built.</p>
+                    </div>
+                  </div>
+                  <p class="tech">Next.js · TypeScript · Streaming conversation UI · 144-second cutoff</p>
+                </div>
+              </div>
+            </div>
+          </details>
+          <details class="ai-item" id="crossing">
+            <summary>
+              <span class="label">03</span>
+              <span class="ai-name">The Crossing</span>
+              <span class="ai-kind">Five Planks</span>
+              <span class="plus" aria-hidden="true"></span>
+            </summary>
+            <div class="ai-panel">
+              <div class="ai-panel-in">
+                <div class="ai-panel-body">
+                  <div class="ai-cols">
+                    <div>
+                      <h3>What it does</h3>
+                      <p>The Crossing is how a walker leaves The Bridge. Five Planks are curated links for that day. Before login they are a fixed set. After the Pause they are specific to that Drop. The product is built to send people onward, not to keep them in a feed.</p>
+                    </div>
+                    <div>
+                      <h3>My role</h3>
+                      <p>I led the frontend for The Crossing and the Planks, including the difference between the public set and the Drop-specific set.</p>
+                    </div>
+                  </div>
+                  <p class="tech">Next.js · React · TypeScript · Product flows</p>
+                </div>
+              </div>
+            </div>
+          </details>
+          <details class="ai-item" id="locks">
+            <summary>
+              <span class="label">04</span>
+              <span class="ai-name">The Locks</span>
+              <span class="ai-kind">One anonymous thought</span>
+              <span class="plus" aria-hidden="true"></span>
+            </summary>
+            <div class="ai-panel">
+              <div class="ai-panel-in">
+                <div class="ai-panel-body">
+                  <div class="ai-cols">
+                    <div>
+                      <h3>What it does</h3>
+                      <p>The Locks is the wall where a walker can leave one thought before they go. No names. No replies. The product does not store an identity with that thought.</p>
+                    </div>
+                    <div>
+                      <h3>My role</h3>
+                      <p>I led the frontend for leaving a thought and for reading The Locks as a public, anonymous surface.</p>
+                    </div>
+                  </div>
+                  <p class="tech">Next.js · React · Anonymous product flow</p>
+                </div>
+              </div>
+            </div>
+          </details>
+          <details class="ai-item" id="pulse">
+            <summary>
+              <span class="label">05</span>
+              <span class="ai-name">The Collective Pulse</span>
+              <span class="ai-kind">Aggregate signal</span>
+              <span class="plus" aria-hidden="true"></span>
+            </summary>
+            <div class="ai-panel">
+              <div class="ai-panel-in">
+                <div class="ai-panel-body">
+                  <div class="ai-cols">
+                    <div>
+                      <h3>What it does</h3>
+                      <p>The Collective Pulse is an aggregate reading of anonymous Pauses. Four dimensions: Curiosity, Clarity, Anxiety, and Hope. It is never an individual score. Walkers are registered users. Stewards are practitioners connected through the product. There is also an admin side for operating the product.</p>
+                    </div>
+                    <div>
+                      <h3>My role</h3>
+                      <p>I led the frontend for The Collective Pulse, walker functionality, steward-related surfaces, and the admin side of the product.</p>
+                    </div>
+                  </div>
+                  <p class="tech">Next.js · TypeScript · Public product · Admin</p>
+                </div>
+              </div>
+            </div>
+          </details>
+          <p class="label" style="margin-top:22px">Product architecture · not all of this is my implementation</p>
+          <div class="hood" aria-label="The Bridge product architecture">
+            <span>Next.js</span>
+            <span>React</span>
+            <span>TypeScript</span>
+            <span>Tailwind CSS</span>
+            <span>Magic-link auth</span>
+            <span>AWS Lambda</span>
+            <span>API Gateway</span>
+            <span>DynamoDB</span>
+            <span>SES</span>
+            <span>EventBridge</span>
+            <span>S3</span>
+            <span>CloudFront</span>
+            <span>Anthropic API</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" id="brain">
+        <div class="stage stage-b">
+          <div class="stage-bar">
+            <p class="label">June 2024 — May 2025 · Indore</p>
+            <p class="label">03 / 04</p>
+          </div>
+          <div class="stage-main">
+            <h3 class="stage-name">Brain Inventory<span class="stage-sub">Software Developer</span></h3>
+            <ul class="index-list">
+              <li>Dashboards</li>
+              <li>REST APIs</li>
+              <li>Authentication</li>
+              <li>MongoDB</li>
+              <li>AWS</li>
+            </ul>
+          </div>
+          <div class="stage-foot">
+            <p class="stage-note">Production web applications across the interface and the API.</p>
+            <div class="switch">
+              <a href="#bridge" aria-label="Previous project, The Bridge">←</a>
+              <a href="#client" aria-label="Next project, independent client work">→</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-copy">
+          <div>
+            <p class="roleline">Software Developer</p>
+            <p>Production web applications across the interface and the API. React.js, Node.js, Express.js, and MongoDB, with AWS in the deployment and troubleshooting path.</p>
+          </div>
+          <ul class="ticks">
+            <li>REST APIs, data validation, authentication flows, and application state.</li>
+            <li>Responsive dashboards and multi-role workflows, plus third-party API integrations.</li>
+            <li>MongoDB / Mongoose for application data. Production issues resolved with product, design, and engineering.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="project" id="client">
+        <div class="stage stage-c">
+          <div class="stage-bar">
+            <p class="label">Mar 2023 — Jan 2024 · Remote</p>
+            <p class="label">04 / 04</p>
+          </div>
+          <div class="stage-main" style="grid-template-columns:1fr">
+            <div>
+              <p class="giant-date">2023—2024</p>
+              <h3 class="stage-name" style="font-size:clamp(2.4rem,4vw,4rem);margin-top:12px">Independent client work</h3>
+              <p class="stage-sub">Freelance Developer</p>
+            </div>
+          </div>
+          <div class="stage-foot">
+            <p class="stage-note">Full-stack web applications taken from client requirements through development and deployment.</p>
+            <div class="switch">
+              <a href="#brain" aria-label="Previous project, Brain Inventory">←</a>
+              <a href="#crayon" aria-label="Next project, Crayon Jobs">→</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-copy">
+          <div>
+            <p class="roleline">Freelance Developer</p>
+            <p>Full-stack web applications taken from client requirements through development and deployment.</p>
+          </div>
+          <ul class="ticks">
+            <li>React.js, Node.js, Express.js, and MongoDB.</li>
+            <li>REST APIs and third-party services, delivered as responsive, production-ready applications.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section id="experience" aria-labelledby="exp-title">
+      <div class="sec">
+        <header class="sec-head">
+          <p class="label">05 — Experience</p>
+          <h2 class="display" id="exp-title">Three years of software. Then AI inside it.</h2>
+          <p class="lead">Client projects, production applications, then AI features on Crayon and The Bridge.</p>
+        </header>
+        <article class="exp-item">
+          <div>
+            <p class="exp-year">2025</p>
+            <span class="label">May 2025 — Present</span>
+          </div>
+          <div>
+            <h3>Crayon Jobs Platform</h3>
+            <p class="roleline">Senior Software Developer, AI / Full Stack · Remote · Freelance</p>
+            <ul>
+              <li>Production features on a job platform serving 175K+ active users, with React.js, Next.js, TypeScript, and Node.js.</li>
+              <li>REST APIs, authentication, authorization, dashboards, role-based workflows, and MongoDB.</li>
+              <li>Job Spec Jerry, Resume Reggie, Ted and Thuli, semantic search, and ATS workflows — integrated from requirements into the live hiring product.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="exp-item">
+          <div>
+            <p class="exp-year">2024</p>
+            <span class="label">June 2024 — May 2025</span>
+          </div>
+          <div>
+            <h3>Brain Inventory</h3>
+            <p class="roleline">Software Developer · Indore, India</p>
+            <ul>
+              <li>Production applications with React.js, Node.js, Express.js, and MongoDB.</li>
+              <li>REST APIs, authentication, reusable integrations, and multi-role dashboards.</li>
+              <li>AWS for deployments and production troubleshooting, with product, design, and engineering.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="exp-item">
+          <div>
+            <p class="exp-year">2023</p>
+            <span class="label">Mar 2023 — Jan 2024</span>
+          </div>
+          <div>
+            <h3>Independent client work</h3>
+            <p class="roleline">Freelance Developer · Remote</p>
+            <ul>
+              <li>Responsive full-stack applications with React.js, Node.js, Express.js, and MongoDB.</li>
+              <li>Client work from requirements through development and deployment, including REST APIs and third-party services.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="exp-item">
+          <div>
+            <p class="exp-year">2019</p>
+            <span class="label">2019 — 2023</span>
+          </div>
+          <div>
+            <h3>RGPV University, Indore</h3>
+            <p class="roleline">B.Tech, Computer Science · CGPA 8.9 / 10</p>
+          </div>
+        </article>
+        <aside class="cert">
+          <p class="label">Certification · 2026</p>
+          <strong>Full Stack AI Engineer</strong>
+          <p>AI engineering, Python, LLM applications, RAG, vector databases, embeddings, AI agents, and production AI workflows.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-title">
+      <div class="skills-wrap">
+        <div class="skills-canvas">
+          <header class="sec-head">
+            <p class="label">06 — Technical stack</p>
+            <h2 class="display" id="skills-title">What I actually use.</h2>
+            <p class="lead">Grouped the way the work is grouped. Every technology here is already on the page — nothing is hidden behind a hover.</p>
+          </header>
+          <div class="skill-grid">
+            <article class="skill skill-fe">
+              <h3>Frontend</h3>
+              <ul>
+                <li>JavaScript</li><li>TypeScript</li><li>React.js</li><li>Next.js</li>
+                <li>Redux Toolkit</li><li>React Query</li><li>HTML5</li><li>CSS3</li>
+                <li>Tailwind CSS</li><li>Material UI</li>
+              </ul>
+            </article>
+            <article class="skill skill-be">
+              <h3>Backend</h3>
+              <ul>
+                <li>Node.js</li><li>Express.js</li><li>REST APIs</li><li>API integration</li>
+                <li>Authentication</li><li>Authorization</li><li>JWT</li>
+              </ul>
+            </article>
+            <article class="skill skill-ai">
+              <h3>AI</h3>
+              <ul>
+                <li>Python</li><li>LLM integration</li><li>Prompt engineering</li><li>RAG</li>
+                <li>Vector databases</li><li>Embeddings</li><li>Semantic search</li><li>AI agents</li>
+                <li>AI workflows</li><li>LLM APIs</li><li>AI evaluation</li><li>Generative AI</li>
+              </ul>
+            </article>
+            <article class="skill skill-data">
+              <h3>Data</h3>
+              <ul>
+                <li>MongoDB</li><li>Mongoose</li><li>SQL</li><li>Database design</li>
+              </ul>
+            </article>
+            <article class="skill skill-cloud">
+              <h3>Cloud &amp; tools</h3>
+              <ul>
+                <li>AWS</li><li>Docker</li><li>CI/CD</li><li>Git</li>
+              </ul>
+            </article>
+            <article class="skill skill-practice">
+              <h3>Practice</h3>
+              <ul>
+                <li>Production debugging</li><li>Agile</li><li>AI integration</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <div class="sec">
+        <header class="sec-head">
+          <p class="label">07 — About</p>
+          <h2 class="display" id="about-title">How the work gets finished.</h2>
+          <p class="lead">Indore, India. This is how a feature gets from a requirement to something people use in production.</p>
+        </header>
+        <div class="about-grid">
+          <article class="apanel apanel-years">
+            <p class="label">Experience</p>
+            <p class="huge"><span data-count="3" data-suffix="+">3+</span></p>
+            <p>Years building software. Client projects and production applications, then AI features on Crayon and lead frontend work on The Bridge.</p>
+          </article>
+          <article class="apanel apanel-role">
+            <p class="label">Now</p>
+            <h3>Senior Software Developer, AI / Full Stack</h3>
+            <p>Crayon Jobs Platform · Remote · Freelance</p>
+            <p class="label">May 2025 — Present · Indore, India</p>
+          </article>
+          <article class="apanel apanel-scale">
+            <p class="label">Production scale</p>
+            <p class="huge"><span data-count="175" data-suffix="K+">175K+</span></p>
+            <p>Active users on Crayon Jobs. Production features across the interface, the APIs, and the AI inside it.</p>
+          </article>
+          <article class="apanel apanel-p1">
+            <p class="label">01</p>
+            <h3>From the requirement to production.</h3>
+            <p>AI capabilities start as a product need. I take them through a user experience and a backend integration, not a notebook that never ships.</p>
+          </article>
+          <article class="apanel apanel-p2">
+            <p class="label">02</p>
+            <h3>The interface and the API ship together.</h3>
+            <p>Frontend flows, API communication, asynchronous processing, and error states are part of the same feature.</p>
+          </article>
+          <article class="apanel apanel-p3">
+            <p class="label">03</p>
+            <h3>The model has to survive the workflow.</h3>
+            <p>On Crayon that is a job spec, a profile, an interview, or an ATS step. On The Bridge it is the 144-second Pause.</p>
+          </article>
+          <article class="apanel apanel-p4">
+            <p class="label">04</p>
+            <h3>Then I stay for the production issues.</h3>
+            <p>Debug, integrate, and keep it responsive. I do that with product, design, and engineering — performance and reliability included.</p>
+          </article>
+        </div>
+        <p class="voice">The interesting part is not the prompt. It is the feature still working once real users show up.</p>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="contact-canvas">
+        <header class="sec-head">
+          <p class="label">08 — Contact</p>
+          <h2 class="display" id="contact-title">If you need the product and the AI.</h2>
+          <p class="lead">Full-stack AI engineering. Write to me — I read what I get.</p>
+        </header>
+        <a class="email magnet" href="mailto:yadavkirti7745@gmail.com">yadavkirti7745@gmail.com</a>
+        <div>
+          <div class="contact-links">
+            <a href="tel:+916266558859">+91 62665 58859</a>
+            <a href="https://linkedin.com/in/kirti-yadav1681" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/KirtiYadav1681" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+          <p class="contact-meta">Indore, India · Currently at Crayon Jobs Platform</p>
+        </div>
+        <p class="watermark" aria-hidden="true">Kirti Yadav</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <span>Kirti Yadav · Full-Stack AI Engineer</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script>
+    document.documentElement.classList.add("js");
+
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    var nav = document.querySelector(".nav");
+    var menu = document.getElementById("menu");
+    var toggle = document.querySelector(".nav-toggle");
+    var progress = document.querySelector(".progress");
+    var lenisInstance = null;
+
+    function setProgress(scroll) {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var y = typeof scroll === "number" ? scroll : window.scrollY;
+      progress.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
+    }
+
+    function closeMenu() {
+      menu.hidden = true;
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.querySelector("b").textContent = "Menu";
+      document.body.style.overflow = "";
+      if (lenisInstance) lenisInstance.start();
+    }
+
+    function openMenu() {
+      menu.hidden = false;
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.querySelector("b").textContent = "Close";
+      document.body.style.overflow = "hidden";
+      if (lenisInstance) lenisInstance.stop();
+      var first = menu.querySelector("a");
+      if (first) first.focus();
+    }
+
+    toggle.addEventListener("click", function () {
+      if (menu.hidden) openMenu();
+      else closeMenu();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !menu.hidden) {
+        closeMenu();
+        toggle.focus();
+      }
+    });
+
+    document.querySelectorAll(".ai-item").forEach(function (item) {
+      item.addEventListener("toggle", function () {
+        if (!item.open) return;
+        document.querySelectorAll(".ai-item").forEach(function (other) {
+          if (other !== item) other.open = false;
+        });
+      });
+    });
+
+    function goTo(target) {
+      if (!target) return;
+      if (target.tagName === "DETAILS") target.open = true;
+      var offset = -70;
+      if (lenisInstance) lenisInstance.scrollTo(target, { offset: offset });
+      else {
+        var top = target.getBoundingClientRect().top + window.scrollY + offset;
+        window.scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
+      }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        var id = link.getAttribute("href");
+        if (!id || id.length < 2) return;
+        var target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        var menuWasOpen = !menu.hidden;
+        closeMenu();
+        if (menuWasOpen) window.setTimeout(function () { goTo(target); }, 30);
+        else goTo(target);
+      });
+    });
+
+    function markCurrent(id) {
+      document.querySelectorAll("[data-nav]").forEach(function (a) {
+        var on = a.getAttribute("href") === id;
+        if (on) a.setAttribute("aria-current", "page");
+        else a.removeAttribute("aria-current");
+      });
+      document.querySelectorAll(".work-index a").forEach(function (a) {
+        a.classList.toggle("is-active", a.getAttribute("href") === id);
+      });
+    }
+
+    if ("IntersectionObserver" in window) {
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          markCurrent("#" + entry.target.id);
+        });
+      }, { rootMargin: "-45% 0px -45% 0px", threshold: 0.01 });
+      document.querySelectorAll("main section[id], .project[id]").forEach(function (sec) { spy.observe(sec); });
+    }
+
+    window.addEventListener("scroll", function () { setProgress(); }, { passive: true });
+    setProgress();
+
+    if (!reduce && window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      if (fine && window.Lenis) {
+        lenisInstance = new Lenis({ duration: 1.05, smoothWheel: true });
+        lenisInstance.on("scroll", function (e) {
+          ScrollTrigger.update();
+          setProgress(e.scroll);
+        });
+        gsap.ticker.add(function (time) { lenisInstance.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+      }
+
+      gsap.from(".hero-kicker, .hero-id", {
+        y: 22, opacity: 0, duration: 0.7, ease: "power3.out", stagger: 0.06
+      });
+      gsap.from(".hero-role", {
+        yPercent: 110, duration: 0.95, ease: "power3.out", stagger: 0.08, delay: 0.12
+      });
+      gsap.from(".hero-copy .dek, .hero-copy .cta, .resume-alt", {
+        y: 16, opacity: 0, duration: 0.7, ease: "power3.out", stagger: 0.08, delay: 0.28
+      });
+      gsap.from(".hero-portrait img", {
+        y: 36, scale: 1.05, opacity: 0, duration: 1, ease: "power3.out", delay: 0.2,
+        clearProps: "transform"
+      });
+      gsap.from(".proof", {
+        y: 24, opacity: 0, duration: 0.8, ease: "power3.out", delay: 0.4,
+        clearProps: "transform"
+      });
+
+      gsap.to(".hero-canvas", {
+        scale: 0.965,
+        scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 0.6 }
+      });
+
+      gsap.utils.toArray(".display").forEach(function (el) {
+        gsap.from(el, {
+          y: 36, duration: 0.9, ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 88%" }
+        });
+      });
+
+      gsap.utils.toArray(".bcard, .apanel, .skill").forEach(function (el) {
+        gsap.from(el, {
+          y: 28, duration: 0.8, ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 90%" }
+        });
+      });
+
+      document.querySelectorAll("[data-count]").forEach(function (el) {
+        var target = parseFloat(el.getAttribute("data-count"));
+        var suffix = el.getAttribute("data-suffix") || "";
+        var obj = { n: 0 };
+        gsap.to(obj, {
+          n: target, duration: 1.35, ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 88%" },
+          onUpdate: function () { el.textContent = Math.round(obj.n) + suffix; }
+        });
+      });
+
+      document.querySelectorAll(".menu a[download]").forEach(function (link) {
+        link.addEventListener("click", function () { closeMenu(); });
+      });
+
+      if (fine) {
+        document.querySelectorAll(".magnet").forEach(function (el) {
+          var xTo = gsap.quickTo(el, "x", { duration: 0.35, ease: "power3.out" });
+          var yTo = gsap.quickTo(el, "y", { duration: 0.35, ease: "power3.out" });
+          el.addEventListener("mousemove", function (e) {
+            var r = el.getBoundingClientRect();
+            xTo((e.clientX - (r.left + r.width / 2)) * 0.22);
+            yTo((e.clientY - (r.top + r.height / 2)) * 0.3);
+          });
+          el.addEventListener("mouseleave", function () { xTo(0); yTo(0); });
+        });
+
+        var heroCanvas = document.querySelector(".hero-canvas");
+        var portrait = document.querySelector(".hero-portrait");
+        var proofIn = document.querySelector(".proof-in");
+        if (heroCanvas && portrait && proofIn && window.matchMedia("(min-width: 981px)").matches) {
+          var px = gsap.quickTo(portrait, "x", { duration: 0.7, ease: "power3.out" });
+          var py = gsap.quickTo(portrait, "y", { duration: 0.7, ease: "power3.out" });
+          var sx = gsap.quickTo(proofIn, "x", { duration: 0.55, ease: "power3.out" });
+          var sy = gsap.quickTo(proofIn, "y", { duration: 0.55, ease: "power3.out" });
+          heroCanvas.addEventListener("mousemove", function (e) {
+            var r = heroCanvas.getBoundingClientRect();
+            var dx = (e.clientX - r.left) / r.width - 0.5;
+            var dy = (e.clientY - r.top) / r.height - 0.5;
+            px(dx * -16); py(dy * -10);
+            sx(dx * 10); sy(dy * 8);
+          });
+        }
+
+        var cursor = document.querySelector(".cursor");
+        var cx = gsap.quickTo(cursor, "x", { duration: 0.35, ease: "power3.out" });
+        var cy = gsap.quickTo(cursor, "y", { duration: 0.35, ease: "power3.out" });
+        window.addEventListener("mousemove", function (e) {
+          cx(e.clientX); cy(e.clientY); cursor.classList.add("on");
+        });
+        document.querySelectorAll("a, button, summary").forEach(function (el) {
+          el.addEventListener("mouseenter", function () { cursor.classList.add("hot"); });
+          el.addEventListener("mouseleave", function () { cursor.classList.remove("hot"); });
+        });
+      }
+    }
+  </script>
+</body>
+</html>
