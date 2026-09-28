@@ -52,16 +52,18 @@ export function Hero() {
             </a>
           </p>
         </div>
-        <figure className="hero-portrait">
-          <Image
-            className="hero-portrait-img"
-            src="/images/kirti-hero-new.png"
-            alt="Portrait of Kirti Yadav"
-            fill
-            preload
-            sizes="(max-width: 1100px) min(100vw, 520px), (max-width: 1280px) 46vw, 52vw"
-          />
-        </figure>
+        <div className="hero-portrait-slot">
+          <figure className="hero-portrait">
+            <Image
+              className="hero-portrait-img"
+              src="/images/kirti-hero-new.png"
+              alt="Portrait of Kirti Yadav"
+              fill
+              preload
+              sizes="(max-width: 1240px) min(100vw, 680px), 36vw"
+            />
+          </figure>
+        </div>
         <aside className="proof" aria-label="At a glance">
           <div className="proof-in">
             <p className="proof-stat">

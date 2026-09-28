@@ -27,7 +27,7 @@ export function HeroCanvas({ children }: { children: ReactNode }) {
 
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const wide = window.matchMedia("(min-width: 1101px)");
+    const wide = window.matchMedia("(min-width: 1241px)");
 
     const apply = (x: number, y: number) => {
       proof.style.transform = `translate3d(${x}px, ${y}px, 0)`;
