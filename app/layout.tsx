@@ -63,15 +63,31 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "/",
+    url: siteUrl,
     siteName: site.name,
     title: site.documentTitle,
     description: site.description,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1901,
+        height: 810,
+        alt: "Kirti Yadav — Full-Stack AI Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: site.documentTitle,
     description: site.description,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1901,
+        height: 810,
+        alt: "Kirti Yadav — Full-Stack AI Engineer",
+      },
+    ],
   },
 };
 
