@@ -21,7 +21,7 @@ npm start
 
 ## Before deploy
 
-Set `NEXT_PUBLIC_SITE_URL` to the public origin, with no trailing slash. See `.env.example`.
+The public origin is `https://kirtiyadav.in`, defined in `lib/site.ts`.
 
 Add the two resume PDFs referenced by the approved prototype:
 
