@@ -400,6 +400,26 @@ section[id],
   transform: rotate(-40deg);
 }
 
+html.menu-open,
+html.menu-open body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+html.menu-open body {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+html.menu-open .nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
 .menu {
   position: fixed;
   inset: var(--nav-h) 0 0 0;
@@ -408,6 +428,8 @@ section[id],
   padding: 12px clamp(18px, 4vw, 36px) 28px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: none;
 }
 
 .menu[hidden] {
