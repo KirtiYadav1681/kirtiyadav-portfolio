@@ -29,11 +29,11 @@ export function WorkSection() {
         <header className="sec-head">
           <p className="label">04 — Selected work</p>
           <h2 className="display reveal" id="work-title">
-            Crayon and The Bridge.
+            Selected work.
           </h2>
           <p className="lead">
-            Two production products. Crayon is an AI hiring platform at scale. The Bridge is an AI product
-            experience I led on the frontend. Earlier roles are below.
+            Crayon is an AI-powered recruitment platform serving 175K+ users. The Bridge is a privacy-first AI
+            reflection platform. Brain Inventory is earlier product engineering.
           </p>
           <nav className="work-index" aria-label="Selected work">
             {workIndex.map((item) => (
@@ -48,13 +48,13 @@ export function WorkSection() {
       <article className="project" id="crayon">
         <div className="stage stage-a reveal">
           <div className="stage-bar">
-            <p className="label">Senior Software Developer, AI / Full Stack · May 2025 — Present</p>
-            <p className="label">01 / 04</p>
+            <p className="label">AI Product & Senior Full Stack AI Engineer · May 2025 – August 2026</p>
+            <p className="label">01 / 03</p>
           </div>
           <div className="stage-main">
             <h3 className="stage-name">
               Crayon
-              <span className="stage-sub">Jobs Platform</span>
+              <span className="stage-sub">All-in-one Recruitment Platform</span>
             </h3>
             <div className="ui-card">
               <p className="label">Shipped on the platform</p>
@@ -66,13 +66,13 @@ export function WorkSection() {
                   Resume Reggie <em>Live</em>
                 </li>
                 <li>
-                  Ted <em>Live</em>
+                  AI Search <em>Live</em>
                 </li>
                 <li>
-                  Thuli <em>Live</em>
+                  AI Interviews <em>Live</em>
                 </li>
                 <li>
-                  Crayon ATS <em>Live</em>
+                  AI ATS <em>Live</em>
                 </li>
               </ul>
             </div>
@@ -82,28 +82,25 @@ export function WorkSection() {
               <strong>
                 <CountUp value={175} suffix="K+" />
               </strong>
-              <span>active users on the platform</span>
+              <span>users</span>
             </p>
             <ProjectSwitch
-              previous={{ href: "#client", label: "Previous project, independent client work" }}
+              previous={{ href: "#brain", label: "Previous project, Brain Inventory" }}
               next={{ href: "#bridge", label: "Next project, The Bridge" }}
             />
           </div>
         </div>
         <div className="project-copy">
           <div>
-            <p className="dek">
-              A hiring platform. Employers post roles, manage applicants in one ATS, and reach a candidate
-              network. AI sits at specific points in that flow.
-            </p>
+            <p className="dek">AI-powered recruitment platform serving 175K+ users.</p>
             <dl className="meta-dl meta-space">
               <div>
                 <dt>Role</dt>
-                <dd>Senior Software Developer, AI / Full Stack</dd>
+                <dd>AI Product & Senior Full Stack AI Engineer</dd>
               </div>
               <div>
                 <dt>Engagement</dt>
-                <dd>Freelance · Remote · May 2025 — Present</dd>
+                <dd>Remote · May 2025 – August 2026</dd>
               </div>
               <div>
                 <dt>Product</dt>
@@ -113,27 +110,34 @@ export function WorkSection() {
               </div>
               <div>
                 <dt>Stack</dt>
-                <dd>React.js, Next.js, TypeScript, Node.js, MongoDB</dd>
+                <dd>React, TypeScript, Node.js, Express, MongoDB, OpenAI APIs</dd>
               </div>
             </dl>
           </div>
           <div>
             <ul className="ticks">
-              <li>Built and scaled production features for a job platform serving 175K+ active users.</li>
-              <li>Developed REST APIs between the frontend, server logic, and third-party integrations.</li>
-              <li>Implemented authentication, authorization, dashboards, and role-based workflows.</li>
-              <li>Worked with MongoDB and Mongoose for application data and API-driven workflows.</li>
+              <li>Owned end-to-end delivery of major product features for a platform serving 175K+ users.</li>
               <li>
-                Integrated Job Spec Jerry, Resume Reggie, AI video interviews, semantic search, and ATS
-                management workflows.
+                Built and integrated job-spec generation, CV/profile generation, AI search, semantic matching, AI
+                interviews, and ATS workflows.
               </li>
+              <li>
+                Integrated Node.js/Express services, REST APIs, OpenAI APIs, and asynchronous processing with React
+                and TypeScript.
+              </li>
+              <li>
+                Engineered a realtime AI video interview with OpenAI Realtime and WebRTC, including chunked upload
+                and streaming playback.
+              </li>
+              <li>Implemented role-based workflows across 5–6 user roles, including authentication and dashboards.</li>
             </ul>
             <div className="jump">
               <a href="#jerry">Job Spec Jerry</a>
               <a href="#reggie">Resume Reggie</a>
-              <a href="#interviews">Ted and Thuli</a>
-              <a href="#search">Search</a>
-              <a href="#ats">Crayon ATS</a>
+              <a href="#search">AI Search</a>
+              <a href="#interviews">AI Interviews</a>
+              <a href="#ats">AI ATS</a>
+              <a href="#processing">CV & job-spec processing</a>
             </div>
           </div>
         </div>
@@ -142,24 +146,27 @@ export function WorkSection() {
       <article className="project" id="bridge">
         <div className="stage stage-b reveal">
           <div className="stage-bar">
-            <p className="label">Lead Frontend Developer</p>
-            <p className="label">02 / 04</p>
+            <p className="label">Project · Crayon Technologies</p>
+            <p className="label">02 / 03</p>
           </div>
           <div className="stage-main">
             <h3 className="stage-name">
               The Bridge
-              <span className="stage-sub">A daily thought-pattern interruption</span>
+              <span className="stage-sub">Privacy-first AI Reflection Platform</span>
             </h3>
             <ul className="index-list">
-              <li>Drop</li>
-              <li>Pause</li>
-              <li>The Crossing</li>
-              <li>The Locks</li>
-              <li>The Collective Pulse</li>
+              <li>Production frontend</li>
+              <li>Realtime AI conversations</li>
+              <li>Admin platform</li>
+              <li>Collective Pulse</li>
+              <li>Production delivery</li>
             </ul>
           </div>
           <div className="stage-foot">
-            <p className="stage-note">Public walker experience and the admin side. Next.js, TypeScript, Tailwind CSS.</p>
+            <p className="stage-note">
+              Built the production frontend and integrated realtime AI conversations, admin workflows, and backend
+              services.
+            </p>
             <ProjectSwitch
               previous={{ href: "#crayon", label: "Previous project, Crayon" }}
               next={{ href: "#brain", label: "Next project, Brain Inventory" }}
@@ -168,14 +175,11 @@ export function WorkSection() {
         </div>
         <div className="project-copy">
           <div>
-            <p className="dek">
-              Every day a walker gets one Drop, steps into a 144-second Pause, crosses five Planks, and can
-              leave one anonymous thought at The Locks.
-            </p>
+            <p className="dek">Privacy-first AI reflection platform with realtime AI conversations.</p>
             <dl className="meta-dl meta-space">
               <div>
                 <dt>Role</dt>
-                <dd>Lead Frontend Developer</dd>
+                <dd>Full-Stack AI Engineer</dd>
               </div>
               <div>
                 <dt>Product</dt>
@@ -184,34 +188,29 @@ export function WorkSection() {
                 </dd>
               </div>
               <div>
-                <dt>My stack</dt>
-                <dd>Next.js, React, TypeScript, Tailwind CSS</dd>
+                <dt>My work</dt>
+                <dd>Production frontend, streaming AI, admin, API integration</dd>
               </div>
               <div>
-                <dt>Quality</dt>
-                <dd>SEO and performance considered throughout</dd>
+                <dt>Cloud</dt>
+                <dd>Lambda, API Gateway, DynamoDB, S3, and related AWS services</dd>
               </div>
             </dl>
           </div>
           <div>
             <ul className="ticks">
-              <li>
-                Led the frontend for the public walker experience: the Drop, the Pause, The Crossing, Planks,
-                The Locks, and The Collective Pulse.
-              </li>
-              <li>Built the signed-in walker flows and the admin side of the product.</li>
-              <li>
-                Shipped the Pause as a real AI conversation in the interface: a hard 144-second session, one
-                question at a time, with streamed responses.
-              </li>
-              <li>Built it as a production Next.js experience, with SEO, accessibility, and performance considered throughout.</li>
+              <li>Built the product frontend from scratch to production, including architecture and API integration.</li>
+              <li>Implemented realtime streamed AI conversations and reflection workflows.</li>
+              <li>Built a configurable admin platform for content, configuration, and user-facing experiences.</li>
+              <li>Integrated backend services for the Collective Pulse / Insights experience.</li>
+              <li>Delivered SEO, responsiveness, Core Web Vitals, performance, and accessibility.</li>
             </ul>
             <div className="jump">
-              <a href="#drop">Drop</a>
-              <a href="#pause">Pause</a>
-              <a href="#crossing">The Crossing</a>
-              <a href="#locks">The Locks</a>
-              <a href="#pulse">The Collective Pulse</a>
+              <a href="#frontend">Production frontend</a>
+              <a href="#conversations">Realtime AI</a>
+              <a href="#admin">Admin</a>
+              <a href="#pulse">Collective Pulse</a>
+              <a href="#delivery">Production delivery</a>
             </div>
           </div>
         </div>
@@ -219,16 +218,16 @@ export function WorkSection() {
           {bridgeFeatures.map((item) => (
             <AiDetails key={item.id} item={item} />
           ))}
-          <p className="label arch-note">Product architecture · not all of this is my implementation</p>
-          <Hood label="The Bridge product architecture" items={bridgeArchitecture} />
+          <p className="label arch-note">Cloud services I worked with on this product.</p>
+          <Hood label="Cloud services on The Bridge" items={bridgeArchitecture} />
         </div>
       </article>
 
       <article className="project" id="brain">
         <div className="stage stage-b reveal">
           <div className="stage-bar">
-            <p className="label">June 2024 — May 2025 · Indore</p>
-            <p className="label">03 / 04</p>
+            <p className="label">June 2024 – May 2025 · Hybrid</p>
+            <p className="label">03 / 03</p>
           </div>
           <div className="stage-main">
             <h3 className="stage-name">
@@ -236,71 +235,30 @@ export function WorkSection() {
               <span className="stage-sub">Software Developer</span>
             </h3>
             <ul className="index-list">
-              <li>Dashboards</li>
-              <li>REST APIs</li>
-              <li>Authentication</li>
-              <li>MongoDB</li>
-              <li>AWS</li>
+              <li>Waypoint</li>
+              <li>Loyyal</li>
+              <li>React.js</li>
+              <li>Redux</li>
+              <li>Material UI</li>
             </ul>
           </div>
           <div className="stage-foot">
-            <p className="stage-note">Production web applications across the interface and the API.</p>
+            <p className="stage-note">An AI travel planner and a blockchain asset platform.</p>
             <ProjectSwitch
               previous={{ href: "#bridge", label: "Previous project, The Bridge" }}
-              next={{ href: "#client", label: "Next project, independent client work" }}
+              next={{ href: "#crayon", label: "Next project, Crayon" }}
             />
           </div>
         </div>
         <div className="project-copy">
           <div>
-            <p className="roleline">Software Developer</p>
-            <p>
-              Production web applications across the interface and the API. React.js, Node.js, Express.js, and
-              MongoDB, with AWS in the deployment and troubleshooting path.
-            </p>
+            <p className="roleline">Software Developer · Hybrid</p>
+            <p>Production web products: Waypoint, an AI-powered travel planner, and Loyyal, a token studio.</p>
           </div>
           <ul className="ticks">
-            <li>REST APIs, data validation, authentication flows, and application state.</li>
-            <li>Responsive dashboards and multi-role workflows, plus third-party API integrations.</li>
-            <li>
-              MongoDB / Mongoose for application data. Production issues resolved with product, design, and
-              engineering.
-            </li>
-          </ul>
-        </div>
-      </article>
-
-      <article className="project" id="client">
-        <div className="stage stage-c reveal">
-          <div className="stage-bar">
-            <p className="label">Mar 2023 — Jan 2024 · Remote</p>
-            <p className="label">04 / 04</p>
-          </div>
-          <div className="stage-main stage-main-solo">
-            <div>
-              <p className="giant-date">2023—2024</p>
-              <h3 className="stage-name stage-name-solo">Independent client work</h3>
-              <p className="stage-sub">Freelance Developer</p>
-            </div>
-          </div>
-          <div className="stage-foot">
-            <p className="stage-note">
-              Full-stack web applications taken from client requirements through development and deployment.
-            </p>
-            <ProjectSwitch
-              previous={{ href: "#brain", label: "Previous project, Brain Inventory" }}
-              next={{ href: "#crayon", label: "Next project, Crayon Jobs" }}
-            />
-          </div>
-        </div>
-        <div className="project-copy">
-          <div>
-            <p className="roleline">Freelance Developer</p>
-            <p>Full-stack web applications taken from client requirements through development and deployment.</p>
-          </div>
-          <ul className="ticks">
-            <li>React.js, Node.js, Express.js, and MongoDB.</li>
-            <li>REST APIs and third-party services, delivered as responsive, production-ready applications.</li>
+            <li>Waypoint: built the frontend, trip-planning workflows, and flight API integration for comparing and booking flights.</li>
+            <li>Used React.js, JavaScript, Redux, and Material UI.</li>
+            <li>Loyyal: built frontend interfaces and blockchain wallet connectivity for tokenized assets.</li>
           </ul>
         </div>
       </article>

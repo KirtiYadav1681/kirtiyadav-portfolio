@@ -10,9 +10,9 @@ export function ContactSection() {
             <header className="sec-head">
               <p className="label">08 — Contact</p>
               <h2 className="display reveal" id="contact-title">
-                If you need the product and the AI.
+                If you need a full-stack AI engineer.
               </h2>
-              <p className="lead">Full-stack AI engineering. Write to me — I read what I get.</p>
+              <p className="lead">Write to me about a product, a role, or a feature.</p>
             </header>
             <div className="contact-foot">
               <a className="email" href={`mailto:${site.email}`}>
@@ -29,7 +29,7 @@ export function ContactSection() {
                   <span className="sr"> (opens in a new tab)</span>
                 </a>
               </div>
-              <p className="contact-meta">Indore, India · Currently at Crayon Jobs Platform</p>
+              <p className="contact-meta">Indore, India · Crayon Technologies, May 2025 – August 2026</p>
             </div>
           </div>
           <ContactForm />

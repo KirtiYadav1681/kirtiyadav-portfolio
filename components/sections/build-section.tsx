@@ -7,13 +7,12 @@ export function BuildSection() {
         <header className="sec-head">
           <p className="label">02 — What I build</p>
           <h2 className="display reveal" id="build-title">
-            Frontend, backend,
+            Full-stack
             <br />
-            and AI.
+            AI engineering.
           </h2>
           <p className="lead">
-            I build the product around the model. Frontend craft, the API, and the AI feature land together —
-            from the requirement to something people can use.
+            I take a feature from the requirement through the interface, the API, and production.
           </p>
         </header>
         <div className="build-grid">

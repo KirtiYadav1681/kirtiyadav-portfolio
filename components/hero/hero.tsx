@@ -16,7 +16,7 @@ export function Hero() {
     <section className="hero" aria-label="Introduction">
       <HeroCanvas>
         <div className="hero-copy">
-          <p className="label hero-kicker">Full-stack · AI · Product</p>
+          <p className="label hero-kicker">Full-Stack AI Engineer</p>
           <h1>
             <span className="line">
               <span className="line-in hero-id">{site.name}</span>
@@ -67,15 +67,15 @@ export function Hero() {
           <p className="proof-stat">
             <CountUp value={175} suffix="K+" />
           </p>
-          <p className="proof-sub">active users on Crayon Jobs</p>
+          <p className="proof-sub">users</p>
           <dl className="proof-rows">
             <div>
               <dt>Since</dt>
               <dd>May 2025</dd>
             </div>
             <div>
-              <dt>Span</dt>
-              <dd>3+ years building software</dd>
+              <dt>Experience</dt>
+              <dd>3+ years</dd>
             </div>
             <div>
               <dt>Based</dt>

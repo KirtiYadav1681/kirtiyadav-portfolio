@@ -1527,6 +1527,7 @@ html.menu-open .nav {
 }
 
 .skill-be,
+.skill-data,
 .skill-practice {
   grid-column: span 2;
 }
@@ -2016,6 +2017,7 @@ footer {
   .skill-fe,
   .skill-ai,
   .skill-be,
+  .skill-data,
   .skill-practice {
     grid-column: span 2;
   }

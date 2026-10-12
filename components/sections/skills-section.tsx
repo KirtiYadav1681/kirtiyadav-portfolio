@@ -10,10 +10,7 @@ export function SkillsSection() {
             <h2 className="display reveal" id="skills-title">
               What I actually use.
             </h2>
-            <p className="lead">
-              Grouped the way the work is grouped. Every technology here is already on the page — nothing is
-              hidden behind a hover.
-            </p>
+            <p className="lead">The tools I use to ship full-stack AI products.</p>
           </header>
           <div className="skill-grid">
             {skillGroups.map((group) => (

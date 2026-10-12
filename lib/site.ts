@@ -1,5 +1,5 @@
 const DESCRIPTION =
-  "Kirti Yadav is a full-stack AI engineer. She builds production AI products — Crayon’s hiring workflows, and The Bridge as lead frontend.";
+  "Kirti Yadav is a full-stack AI engineer. She builds and ships AI-powered products across the frontend, backend, and AI layer, including a recruitment platform serving 175K+ users.";
 
 export const site = {
   name: "Kirti Yadav",
@@ -12,7 +12,7 @@ export const site = {
   location: "Indore, India",
   linkedin: "https://linkedin.com/in/kirti-yadav1681",
   github: "https://github.com/KirtiYadav1681",
-  dek: "I build AI-powered products and the full-stack systems behind them.",
+  dek: "I build and ship AI-powered products across the frontend, backend, and AI layer.",
   resumes: {
     fullStack: {
       href: "/resume/Kirti_Yadav_3Yr_Exp_Full-Stack.pdf",
@@ -63,7 +63,7 @@ export function getJsonLd() {
         sameAs: [site.linkedin, site.github],
         affiliation: {
           "@type": "Organization",
-          name: "Crayon Jobs Platform",
+          name: "Crayon Technologies Pvt. Ltd.",
           url: "https://crayon.jobs/",
         },
         alumniOf: {
@@ -72,24 +72,21 @@ export function getJsonLd() {
         },
         knowsAbout: [
           "React.js",
-          "Next.js",
           "TypeScript",
+          "Next.js",
           "Node.js",
-          "Python",
-          "LLM integration",
-          "Prompt engineering",
-          "RAG",
-          "Embeddings",
-          "Vector search",
+          "Express.js",
+          "REST APIs",
           "MongoDB",
           "AWS",
+          "OpenAI APIs",
+          "WebRTC",
         ],
         hasCredential: {
           "@type": "EducationalOccupationalCredential",
-          name: "Full Stack AI Engineer",
-          credentialCategory: "certification",
-          description:
-            "AI engineering, Python, LLM applications, RAG, vector databases, embeddings, AI agents, and production AI workflows.",
+          name: "B.Tech, Computer Science",
+          credentialCategory: "degree",
+          description: "RGPV University, Indore, 2019–2023. CGPA 8.9/10.",
         },
       },
       {

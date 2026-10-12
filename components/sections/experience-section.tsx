@@ -7,9 +7,9 @@ export function ExperienceSection() {
         <header className="sec-head">
           <p className="label">05 — Experience</p>
           <h2 className="display reveal" id="exp-title">
-            Three years of software. Then AI inside it.
+            3+ years building software.
           </h2>
-          <p className="lead">Client projects, production applications, then AI features on Crayon and The Bridge.</p>
+          <p className="lead">Now building AI products.</p>
         </header>
         {experience.map((item) => (
           <article className="exp-item reveal" key={item.year}>
@@ -30,14 +30,6 @@ export function ExperienceSection() {
             </div>
           </article>
         ))}
-        <aside className="cert">
-          <p className="label">Certification · 2026</p>
-          <strong>Full Stack AI Engineer</strong>
-          <p>
-            AI engineering, Python, LLM applications, RAG, vector databases, embeddings, AI agents, and
-            production AI workflows.
-          </p>
-        </aside>
       </div>
     </section>
   );
