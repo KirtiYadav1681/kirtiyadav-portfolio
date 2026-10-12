@@ -1,5 +1,6 @@
 import { crayonEngineering, crayonFeatures } from "@/lib/content";
-import { AiDetails, Hood } from "@/components/ui/ai-details";
+import { AiFeatureGrid } from "@/components/sections/ai-feature-grid";
+import { Hood } from "@/components/ui/ai-details";
 
 export function AiSection() {
   return (
@@ -21,9 +22,7 @@ export function AiSection() {
             and what I built.
           </p>
         </div>
-        {crayonFeatures.map((item) => (
-          <AiDetails key={item.id} item={item} />
-        ))}
+        <AiFeatureGrid features={crayonFeatures} />
         <Hood label="Engineering underneath the features" items={crayonEngineering} />
       </div>
     </section>
