@@ -47,27 +47,42 @@ export const marqueeItems = [
 export const marqueeSummary =
   "Work includes job-spec generation, CV and profile generation, semantic search, realtime AI interviews, and ATS workflows on a recruitment platform serving 175K+ users, plus the production frontend for The Bridge.";
 
-export const buildCards = [
+export const buildHub = "Product feature";
+
+export const buildDestinations = [
   {
-    className: "bcard bcard-1 reveal",
-    index: "01 — The feature",
-    title: "From requirement to release.",
-    body: "I turn a product requirement into a technical approach, then implementation, integration, optimization, and a production release.",
-    tech: "Requirements · Technical design · Integration · Deployment · Production",
+    id: "frontend",
+    label: "React + TypeScript",
+    detail: "Frontend interface",
   },
   {
-    className: "bcard bcard-2 reveal",
-    index: "02 — The stack",
-    title: "Interface, API, and data.",
-    body: "React and TypeScript on the interface. Node.js, Express, and REST APIs behind it. MongoDB and AWS where the product needs them.",
-    tech: "React.js · TypeScript · Node.js · Express.js · REST APIs · MongoDB · AWS",
+    id: "backend",
+    label: "Node + REST API",
+    detail: "Backend services",
   },
   {
-    className: "bcard bcard-3 reveal",
-    index: "03 — The AI",
-    title: "Inside the product workflow.",
-    body: "OpenAI APIs for job-spec generation, CV processing, semantic matching, and realtime interviews.",
-    tech: "OpenAI APIs · OpenAI Realtime · Prompt engineering · Streaming AI · WebRTC",
+    id: "ai",
+    label: "OpenAI + Realtime",
+    detail: "AI features",
+  },
+] as const;
+
+export const buildStages = [
+  {
+    index: "01 — Design",
+    detail: "Requirements and planning",
+  },
+  {
+    index: "02 — Integration",
+    detail: "Frontend, backend and AI workflows",
+  },
+  {
+    index: "03 — Deployment",
+    detail: "Cloud infrastructure and release",
+  },
+  {
+    index: "04 — Production",
+    detail: "Monitoring and improvement",
   },
 ] as const;
 
