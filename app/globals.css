@@ -2784,106 +2784,812 @@ html.menu-open .nav {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-.about-grid {
+.how-sec {
+  --mark: 80px;
+  --how-index: 18px;
+  --how-index-gap: 14px;
+  --how-rail-top: calc(var(--how-index) + var(--how-index-gap) + var(--mark) / 2);
+  --step-gap: 36px;
+  --how-line: rgba(214, 208, 232, 0.42);
+  --how-line-hot: rgba(236, 230, 255, 0.95);
+}
+
+.how-top {
   display: grid;
-  gap: 12px;
-  grid-template-columns: 1.05fr 0.95fr 1fr;
-  grid-template-areas:
-    "years role role"
-    "years scale scale"
-    "p1 p1 p2"
-    "p3 p4 p4";
+  grid-template-columns: minmax(0, 1.28fr) minmax(230px, 0.92fr) minmax(168px, 0.58fr);
+  align-items: center;
   min-width: 0;
 }
 
-.apanel {
-  border-radius: 22px;
-  padding: clamp(18px, 2vw, 28px);
-  color: var(--ink);
-  min-height: 180px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background-size: 160% 160%;
-  background-position: 20% 20%;
-  transition: background-position 0.7s var(--ease);
+.how-intro {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
   min-width: 0;
+  padding-right: clamp(18px, 2.6vw, 40px);
 }
 
-.apanel:hover {
-  background-position: 80% 70%;
-}
-
-.apanel .label {
-  color: var(--muted-l);
-}
-
-.apanel-years {
-  grid-area: years;
-  background-image: linear-gradient(165deg, #efe4ff, #c9a6ff 72%, #ddd0ff);
-}
-
-.apanel-role {
-  grid-area: role;
-  background-image: linear-gradient(125deg, #f5f8ff, #c9dcff);
-}
-
-.apanel-scale {
-  grid-area: scale;
-  background-image: linear-gradient(150deg, #c7b0ff, #a9beff 48%, #e3eeff);
-}
-
-.apanel-p1 {
-  grid-area: p1;
-  background-image: linear-gradient(160deg, #f8f5ff, #e0d0ff);
-}
-
-.apanel-p2 {
-  grid-area: p2;
-  background: #f7f8fc;
-}
-
-.apanel-p3 {
-  grid-area: p3;
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.apanel-p4 {
-  grid-area: p4;
-  background-image: linear-gradient(200deg, #e7f0ff, #d5e0ff);
-}
-
-.apanel-p3 .label {
+.how-intro .label {
   color: #d5c9ff;
 }
 
-.huge {
-  font-size: clamp(4.6rem, 8.4vw, 8rem);
+.how-title {
+  max-width: 100%;
   font-weight: 800;
-  letter-spacing: -0.07em;
-  line-height: 0.82;
-  margin-top: auto;
+  letter-spacing: -0.058em;
+  line-height: 0.88;
+  font-size: clamp(3.15rem, 5.35vw, 6.05rem);
 }
 
-.apanel h3 {
-  font-size: clamp(1.45rem, 2vw, 2rem);
-  letter-spacing: -0.04em;
-  line-height: 1.02;
-  font-weight: 750;
+.how-dek {
+  max-width: 46ch;
+  color: var(--muted);
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.45;
 }
 
-.apanel-role h3 {
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
+.how-role,
+.how-metric {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  min-width: 0;
+  border-left: 1px solid var(--line);
+  padding: 6px 0 6px clamp(18px, 2.2vw, 34px);
 }
 
-.voice {
-  margin-top: clamp(28px, 4vw, 48px);
-  font-size: clamp(2rem, 4.4vw, 4.15rem);
-  font-weight: 780;
-  letter-spacing: -0.05em;
-  line-height: 0.96;
+.how-role-title {
+  margin-bottom: 10px;
+  color: var(--paper);
+  font-size: clamp(1.05rem, 1.2vw, 1.22rem);
+  font-weight: 680;
+  letter-spacing: -0.032em;
+  line-height: 1.28;
+}
+
+.how-role-meta,
+.how-metric-copy {
+  color: var(--muted);
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.how-role-meta + .how-role-meta {
+  margin-top: 2px;
+}
+
+.how-metric-num {
+  margin-bottom: 10px;
+  color: #e4d8ff;
+  font-size: clamp(3.15rem, 4.3vw, 4.7rem);
+  font-weight: 800;
+  letter-spacing: -0.065em;
+  line-height: 0.84;
+}
+
+.how-metric-copy {
   max-width: 16ch;
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .how-metric-num .count-value {
+    background-image: linear-gradient(102deg, #f6f1ff 0%, #d7c8ff 46%, #b7c6ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.how-track {
+  position: relative;
+  margin-top: clamp(64px, 8vw, 108px);
+  view-timeline-name: --how-track;
+}
+
+.how-rail {
+  position: absolute;
+  z-index: 0;
+  top: var(--how-rail-top);
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  pointer-events: none;
+}
+
+.how-rail-line {
+  position: absolute;
+  inset: 0;
+  background: var(--how-line);
+  transform-origin: left center;
+}
+
+.how-chev {
+  position: absolute;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-left: -4px;
+  border-top: 1.5px solid rgba(226, 220, 255, 0.82);
+  border-right: 1.5px solid rgba(226, 220, 255, 0.82);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.how-chev-a {
+  left: 16.67%;
+}
+
+.how-chev-b {
+  left: 50%;
+}
+
+.how-chev-c {
+  left: 83.33%;
+}
+
+.how-steps {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.how-step {
+  position: relative;
+  min-width: 0;
+}
+
+.how-step-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.how-step-btn:focus-visible {
+  outline: 2px solid #d5c9ff;
+  outline-offset: 6px;
+  border-radius: 18px;
+}
+
+.how-index {
+  width: 100%;
+  height: var(--how-index);
+  margin-bottom: var(--how-index-gap);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  line-height: var(--how-index);
+  text-align: center;
+  color: #8d8a9b;
+}
+
+.how-mark {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: var(--mark);
+  height: var(--mark);
+  margin-bottom: 22px;
+  border: 1px solid rgba(216, 208, 238, 0.7);
+  border-radius: 50%;
+  background: var(--char);
+  color: #e6e0f6;
+  box-shadow:
+    0 0 0 5px var(--char),
+    0 0 16px rgba(170, 160, 230, 0.16);
+  transition:
+    color 0.28s var(--ease),
+    border-color 0.28s var(--ease),
+    box-shadow 0.28s var(--ease);
+}
+
+.how-mark svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.28s var(--ease);
+}
+
+.how-copy {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  padding-inline: clamp(8px, 0.8vw, 14px);
+}
+
+.how-step:first-child .how-copy {
+  padding-left: 0;
+}
+
+.how-step:last-child .how-copy {
+  padding-right: 0;
+}
+
+.how-step-title {
+  color: #f7f6fb;
+  font-size: clamp(1.28rem, 1.7vw, 1.7rem);
+  font-weight: 740;
+  letter-spacing: -0.04em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.how-step-body {
+  color: #a29eaf;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.how-step.is-on .how-index,
+.how-step-btn:focus-visible .how-index {
+  color: #d5c9ff;
+}
+
+.how-step.is-on .how-step-title,
+.how-step-btn:focus-visible .how-step-title {
+  color: #fff;
+}
+
+.how-step.is-on .how-mark,
+.how-step-btn:focus-visible .how-mark {
+  color: #f7f4ff;
+  border-color: #ddcfff;
+  box-shadow:
+    0 0 0 5px var(--char),
+    0 0 0 6px rgba(214, 200, 255, 0.92),
+    0 0 22px rgba(158, 150, 255, 0.5);
+}
+
+.how-step.is-on .how-mark svg,
+.how-step-btn:focus-visible .how-mark svg {
+  transform: scale(1.06);
+}
+
+.how-close {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+  gap: clamp(22px, 3vw, 40px);
+  margin-top: clamp(56px, 7vw, 96px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+  background: #101014;
+  padding: clamp(26px, 3.2vw, 44px) clamp(22px, 3vw, 40px);
+}
+
+.how-close::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: -240px;
+  bottom: -270px;
+  width: 460px;
+  height: 460px;
+  border: 1px solid rgba(198, 188, 255, 0.32);
+  border-radius: 50%;
+  background: radial-gradient(circle at 62% 38%, rgba(176, 158, 255, 0.2), rgba(140, 168, 255, 0.06) 42%, transparent 64%);
+  pointer-events: none;
+}
+
+.how-quote-wrap,
+.how-phases {
+  position: relative;
+  z-index: 1;
+}
+
+.how-quote-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: center;
+  min-width: 0;
+}
+
+.how-dash {
+  flex: none;
+  width: 26px;
+  height: 2px;
+  margin-top: 0.62em;
+  border-radius: 999px;
+  background: #f4f1ff;
+}
+
+.how-quote {
+  max-width: 18em;
+  font-size: clamp(1.75rem, 2.7vw, 2.75rem);
+  font-weight: 730;
+  letter-spacing: -0.045em;
+  line-height: 1.12;
+  text-wrap: pretty;
+}
+
+.how-accent {
+  background-image: linear-gradient(105deg, #f4eeff 0%, #d2b8ff 48%, #a9beff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: #d7ccff;
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .how-accent {
+    color: transparent;
+  }
+}
+
+.how-phases {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  align-self: stretch;
+  margin: 0;
+  padding: 0 4px 0 clamp(18px, 2vw, 28px);
+  border-left: 1px solid var(--line);
+  list-style: none;
+  color: #c9c3d6;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .how-step-btn:hover .how-mark {
+    color: #f7f4ff;
+    border-color: #ddcfff;
+    box-shadow:
+      0 0 0 5px var(--char),
+      0 0 0 6px rgba(214, 200, 255, 0.92),
+      0 0 22px rgba(158, 150, 255, 0.5);
+  }
+
+  .how-step-btn:hover .how-mark svg {
+    transform: scale(1.06);
+  }
+
+  .how-step-btn:hover .how-index {
+    color: #d5c9ff;
+  }
+
+  .how-step-btn:hover .how-step-title {
+    color: #fff;
+  }
+}
+
+.how-track:has(.how-step:nth-child(1).is-on) .how-rail-line,
+.how-track:has(.how-step:nth-child(1) .how-step-btn:focus-visible) .how-rail-line {
+  background: linear-gradient(90deg, var(--how-line-hot) 0%, var(--how-line) 34%);
+}
+
+.how-track:has(.how-step:nth-child(2).is-on) .how-rail-line,
+.how-track:has(.how-step:nth-child(2) .how-step-btn:focus-visible) .how-rail-line {
+  background: linear-gradient(90deg, var(--how-line) 8%, var(--how-line-hot) 24%, var(--how-line-hot) 46%, var(--how-line) 64%);
+}
+
+.how-track:has(.how-step:nth-child(3).is-on) .how-rail-line,
+.how-track:has(.how-step:nth-child(3) .how-step-btn:focus-visible) .how-rail-line {
+  background: linear-gradient(90deg, var(--how-line) 36%, var(--how-line-hot) 54%, var(--how-line-hot) 76%, var(--how-line) 92%);
+}
+
+.how-track:has(.how-step:nth-child(4).is-on) .how-rail-line,
+.how-track:has(.how-step:nth-child(4) .how-step-btn:focus-visible) .how-rail-line {
+  background: linear-gradient(90deg, var(--how-line) 66%, var(--how-line-hot) 100%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .how-track:has(.how-step:nth-child(1) .how-step-btn:hover) .how-rail-line {
+    background: linear-gradient(90deg, var(--how-line-hot) 0%, var(--how-line) 34%);
+  }
+
+  .how-track:has(.how-step:nth-child(2) .how-step-btn:hover) .how-rail-line {
+    background: linear-gradient(90deg, var(--how-line) 8%, var(--how-line-hot) 24%, var(--how-line-hot) 46%, var(--how-line) 64%);
+  }
+
+  .how-track:has(.how-step:nth-child(3) .how-step-btn:hover) .how-rail-line {
+    background: linear-gradient(90deg, var(--how-line) 36%, var(--how-line-hot) 54%, var(--how-line-hot) 76%, var(--how-line) 92%);
+  }
+
+  .how-track:has(.how-step:nth-child(4) .how-step-btn:hover) .how-rail-line {
+    background: linear-gradient(90deg, var(--how-line) 66%, var(--how-line-hot) 100%);
+  }
+}
+
+@media (max-width: 1119px) and (min-width: 680px) {
+  .how-top {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .how-intro {
+    grid-column: 1 / -1;
+    padding-right: 0;
+    margin-bottom: 26px;
+  }
+
+  .how-role,
+  .how-metric {
+    min-height: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+  }
+
+  .how-role {
+    border-left: 0;
+    padding-left: 0;
+    padding-right: 22px;
+  }
+
+  .how-title {
+    font-size: clamp(3.2rem, 8vw, 5.2rem);
+  }
+
+  .how-rail {
+    display: none;
+  }
+
+  .how-steps {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 42px;
+  }
+
+  .how-step:nth-child(odd) .how-copy {
+    padding-left: 0;
+  }
+
+  .how-step:nth-child(even) .how-copy {
+    padding-right: 0;
+  }
+
+  .how-step:nth-child(odd)::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: var(--how-rail-top);
+    left: 50%;
+    width: 100%;
+    height: 1px;
+    background: var(--how-line);
+    transform-origin: left center;
+    pointer-events: none;
+  }
+
+  .how-step:nth-child(odd)::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: var(--how-rail-top);
+    left: 100%;
+    width: 7px;
+    height: 7px;
+    margin-left: -4px;
+    border-top: 1.5px solid rgba(226, 220, 255, 0.82);
+    border-right: 1.5px solid rgba(226, 220, 255, 0.82);
+    transform: translateY(-50%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  .how-steps:has(.how-step:nth-child(1).is-on) .how-step:nth-child(1)::before,
+  .how-steps:has(.how-step:nth-child(2).is-on) .how-step:nth-child(1)::before,
+  .how-steps:has(.how-step:nth-child(1) .how-step-btn:focus-visible) .how-step:nth-child(1)::before,
+  .how-steps:has(.how-step:nth-child(2) .how-step-btn:focus-visible) .how-step:nth-child(1)::before,
+  .how-steps:has(.how-step:nth-child(3).is-on) .how-step:nth-child(3)::before,
+  .how-steps:has(.how-step:nth-child(4).is-on) .how-step:nth-child(3)::before,
+  .how-steps:has(.how-step:nth-child(3) .how-step-btn:focus-visible) .how-step:nth-child(3)::before,
+  .how-steps:has(.how-step:nth-child(4) .how-step-btn:focus-visible) .how-step:nth-child(3)::before {
+    background: var(--how-line-hot);
+  }
+}
+
+@media (max-width: 1119px) and (min-width: 680px) and (hover: hover) and (pointer: fine) {
+  .how-steps:has(.how-step:nth-child(1) .how-step-btn:hover) .how-step:nth-child(1)::before,
+  .how-steps:has(.how-step:nth-child(2) .how-step-btn:hover) .how-step:nth-child(1)::before,
+  .how-steps:has(.how-step:nth-child(3) .how-step-btn:hover) .how-step:nth-child(3)::before,
+  .how-steps:has(.how-step:nth-child(4) .how-step-btn:hover) .how-step:nth-child(3)::before {
+    background: var(--how-line-hot);
+  }
+}
+
+@media (max-width: 679px) {
+  .how-sec {
+    --mark: 58px;
+    --step-gap: 28px;
+  }
+
+  .how-top,
+  .how-steps,
+  .how-close {
+    grid-template-columns: 1fr;
+  }
+
+  .how-intro {
+    margin-bottom: 0;
+  }
+
+  .how-rail {
+    display: none;
+  }
+
+  .how-role,
+  .how-metric {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+    margin-top: 20px;
+    padding: 20px 0 0;
+  }
+
+  .how-title {
+    font-size: clamp(2.55rem, 12vw, 4rem);
+  }
+
+  .how-metric-copy {
+    max-width: 22ch;
+  }
+
+  .how-steps {
+    row-gap: var(--step-gap);
+  }
+
+  .how-step::before,
+  .how-step::after {
+    content: none;
+  }
+
+  .how-step-btn {
+    display: grid;
+    grid-template-columns: var(--mark) minmax(0, 1fr);
+    grid-template-areas:
+      "mark index"
+      "mark copy";
+    column-gap: 14px;
+    row-gap: 4px;
+    align-items: start;
+    justify-items: start;
+  }
+
+  .how-index {
+    grid-area: index;
+    width: auto;
+    height: auto;
+    margin: 2px 0 0;
+    line-height: 1.2;
+    text-align: left;
+  }
+
+  .how-mark {
+    grid-area: mark;
+    align-self: start;
+    margin: 0;
+  }
+
+  .how-mark svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .how-copy {
+    grid-area: copy;
+    padding: 0;
+  }
+
+  .how-step:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: calc(var(--mark) / 2);
+    bottom: calc((var(--step-gap) + var(--mark) / 2) * -1);
+    left: calc(var(--mark) / 2 - 0.5px);
+    width: 1px;
+    height: auto;
+    background: var(--how-line);
+    transform: none;
+    transform-origin: top center;
+    pointer-events: none;
+  }
+
+  .how-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: calc(50% + var(--step-gap) / 2 + var(--mark) / 2);
+    left: calc(var(--mark) / 2);
+    width: 7px;
+    height: 7px;
+    margin: 0;
+    border-top: 1.5px solid rgba(226, 220, 255, 0.82);
+    border-right: 1.5px solid rgba(226, 220, 255, 0.82);
+    transform: translate(-50%, -50%) rotate(135deg);
+    pointer-events: none;
+  }
+
+  .how-step.is-on::before,
+  .how-step:has(+ .how-step.is-on)::before,
+  .how-step:has(.how-step-btn:focus-visible)::before,
+  .how-step:has(+ .how-step .how-step-btn:focus-visible)::before {
+    background: var(--how-line-hot);
+  }
+
+  .how-close {
+    gap: 22px;
+    padding: 24px 18px 22px;
+  }
+
+  .how-quote {
+    font-size: clamp(1.55rem, 6.4vw, 2rem);
+  }
+
+  .how-phases {
+    align-items: flex-start;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 16px 0 0;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .how-intro,
+    .how-role,
+    .how-metric,
+    .how-close,
+    .how-copy {
+      animation: exp-rise 0.7s var(--ease) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 42%;
+    }
+
+    .how-role {
+      animation-range: entry 8% entry 48%;
+    }
+
+    .how-metric {
+      animation-range: entry 14% entry 54%;
+    }
+
+    .how-index {
+      animation: exp-fade 0.55s var(--ease) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 36%;
+    }
+
+    .how-mark {
+      animation: how-mark-in 0.55s var(--ease) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 38%;
+    }
+
+    .how-step:nth-child(2) .how-index,
+    .how-step:nth-child(2) .how-mark,
+    .how-step:nth-child(2) .how-copy {
+      animation-range: entry 8% entry 46%;
+    }
+
+    .how-step:nth-child(3) .how-index,
+    .how-step:nth-child(3) .how-mark,
+    .how-step:nth-child(3) .how-copy {
+      animation-range: entry 16% entry 54%;
+    }
+
+    .how-step:nth-child(4) .how-index,
+    .how-step:nth-child(4) .how-mark,
+    .how-step:nth-child(4) .how-copy {
+      animation-range: entry 24% entry 62%;
+    }
+
+    .how-rail-line {
+      animation: how-draw-x linear both;
+      animation-timeline: --how-track;
+      animation-range: entry 6% entry 46%;
+    }
+
+    .how-chev {
+      animation: exp-fade 0.4s var(--ease) both;
+      animation-timeline: --how-track;
+    }
+
+    .how-chev-a {
+      animation-range: entry 16% entry 36%;
+    }
+
+    .how-chev-b {
+      animation-range: entry 24% entry 44%;
+    }
+
+    .how-chev-c {
+      animation-range: entry 32% entry 52%;
+    }
+
+    .how-close {
+      animation-range: entry 0% entry 46%;
+    }
+  }
+}
+
+@keyframes how-mark-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes how-draw-x {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes how-draw-y {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@media (max-width: 1119px) and (min-width: 680px) {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .how-step:nth-child(odd)::before {
+        animation: how-draw-x linear both;
+        animation-timeline: view();
+        animation-range: entry 12% entry 58%;
+      }
+    }
+  }
+}
+
+@media (max-width: 679px) {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .how-step:nth-child(odd)::before {
+        animation: none;
+      }
+
+      .how-step:not(:last-child)::before {
+        animation: how-draw-y linear both;
+        animation-timeline: view();
+        animation-range: entry 18% entry 72%;
+      }
+    }
+  }
 }
 
 .contact {
@@ -3216,7 +3922,6 @@ footer {
 }
 
 @media (max-width: 1100px) {
-  .about-grid,
   .ai-intro,
   .project-copy,
   .stage-main,
@@ -3226,14 +3931,6 @@ footer {
 
   .stage-main.stage-main-solo {
     grid-template-columns: 1fr;
-  }
-
-  .about-grid {
-    grid-template-areas:
-      "years role"
-      "scale scale"
-      "p1 p2"
-      "p3 p4";
   }
 
   .skill-fe,
@@ -3332,13 +4029,8 @@ footer {
   .ai-cols,
   .project-copy,
   .stage-main,
-  .skill-grid,
-  .about-grid {
+  .skill-grid {
     grid-template-columns: 1fr;
-  }
-
-  .about-grid {
-    grid-template-areas: "years" "role" "scale" "p1" "p2" "p3" "p4";
   }
 
   .ledger a + a {
@@ -3379,10 +4071,6 @@ footer {
 
   .stage-main {
     align-items: start;
-  }
-
-  .voice {
-    max-width: 12em;
   }
 }
 
