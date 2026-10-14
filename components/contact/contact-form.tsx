@@ -131,7 +131,7 @@ export function ContactForm() {
   };
 
   return (
-    <form className="inquiry reveal" onSubmit={handleSubmit} noValidate aria-busy={submitting}>
+    <form className="inquiry" onSubmit={handleSubmit} noValidate aria-busy={submitting}>
       <div className="sr" aria-hidden="true">
         <label htmlFor="inquiry-website">Website</label>
         <input
@@ -144,7 +144,6 @@ export function ContactForm() {
           onChange={(event) => setWebsite(event.target.value)}
         />
       </div>
-      <h3 className="inquiry-title">Have a project, role, or idea in mind?</h3>
       <div className="inquiry-fields">
         <div className="inquiry-field">
           <label className="label" htmlFor="inquiry-name">
@@ -235,9 +234,11 @@ export function ContactForm() {
         </p>
       ) : null}
       <div className="inquiry-actions">
-        <button className="btn btn-ink inquiry-submit" type="submit" disabled={submitting}>
-          {submitting ? "Sending..." : "Send inquiry"}
-          <ArrowIcon />
+        <button className="contact-send" type="submit" disabled={submitting}>
+          <span className="contact-send-orb" aria-hidden="true">
+            <ArrowIcon />
+          </span>
+          <span>{submitting ? "Sending..." : "Send inquiry"}</span>
         </button>
       </div>
     </form>
