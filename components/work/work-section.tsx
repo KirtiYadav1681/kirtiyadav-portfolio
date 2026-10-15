@@ -1,309 +1,324 @@
-import { CountUp } from "@/components/ui/count-up";
-import { AiDetails, Hood } from "@/components/ui/ai-details";
-import { ExternalLink } from "@/components/ui/external-link";
-import { bridgeArchitecture, bridgeFeatures, workIndex } from "@/lib/content";
+"use client";
 
-function ProjectSwitch({
-  previous,
-  next,
-}: {
-  previous: { href: string; label: string };
-  next: { href: string; label: string };
-}) {
+import { Hood } from "@/components/ui/ai-details";
+import Image from "next/image";
+import { useRef, useSyncExternalStore, type CSSProperties, type KeyboardEvent } from "react";
+
+type ProjectId = "crayon" | "bridge" | "brain";
+
+type Metric = {
+  icon: "users" | "roles" | "ai";
+  value: string;
+  label: string;
+};
+
+type Project = {
+  id: ProjectId;
+  index: string;
+  name: string;
+  summary: string;
+  kicker: string;
+  meta: string;
+  role: string;
+  title: string;
+  description: readonly string[];
+  image: string;
+  imagePosition: string;
+  ratio: string;
+  alt: string;
+  live?: string;
+  metrics?: readonly Metric[];
+  tech: readonly string[];
+};
+
+const projects: readonly Project[] = [
+  {
+    id: "crayon",
+    index: "01",
+    name: "Crayon",
+    summary: "AI-powered recruitment platform",
+    kicker: "01 — Crayon",
+    meta: "May 2025 – August 2026",
+    role: "AI Product & Senior Full Stack AI Engineer · Remote",
+    title: "All-in-one Recruitment Platform",
+    description: [
+      "AI-powered recruitment platform serving 175K+ users.",
+      "Built and integrated job-spec generation, CV/profile generation, AI search, semantic matching, AI interviews, and ATS workflows.",
+      "Implemented role-based workflows across 5–6 user roles, including authentication and dashboards.",
+    ],
+    image: "/images/CrayonBanner.png",
+    imagePosition: "center top",
+    ratio: "1920 / 870",
+    alt: "Crayon.jobs recruitment platform, showing the hiring homepage",
+    live: "https://crayon.jobs/",
+    metrics: [
+      { icon: "users", value: "175K+", label: "users" },
+      { icon: "roles", value: "5–6", label: "user roles" },
+      { icon: "ai", value: "AI-powered", label: "workflows" },
+    ],
+    tech: ["OpenAI APIs", "OpenAI Realtime", "React", "TypeScript", "Node.js", "Express", "MongoDB", "WebRTC", "REST APIs"],
+  },
+  {
+    id: "bridge",
+    index: "02",
+    name: "The Bridge",
+    summary: "Privacy-first AI reflection platform",
+    kicker: "02 — The Bridge",
+    meta: "Project · Crayon Technologies",
+    role: "Full-Stack AI Engineer",
+    title: "Privacy-first AI Reflection Platform",
+    description: [
+      "Privacy-first AI reflection platform with realtime AI conversations.",
+      "Built the production frontend and integrated realtime AI conversations, admin workflows, and backend services.",
+      "Delivered SEO, responsiveness, Core Web Vitals, performance, and accessibility.",
+    ],
+    image: "/images/TheBridgeBanner.png",
+    imagePosition: "center top",
+    ratio: "1089 / 871",
+    alt: "The Bridge homepage, a privacy-first AI reflection platform",
+    live: "https://thebridge144.com/",
+    tech: [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "Streaming AI",
+      "AWS Lambda",
+      "API Gateway",
+      "DynamoDB",
+      "EventBridge",
+      "S3",
+      "KMS",
+      "SES",
+      "Route 53",
+      "CloudFormation/SAM",
+    ],
+  },
+  {
+    id: "brain",
+    index: "03",
+    name: "Brain Inventory",
+    summary: "AI travel planner and asset platform",
+    kicker: "03 — Brain Inventory",
+    meta: "June 2024 – May 2025",
+    role: "Software Developer · Hybrid",
+    title: "Waypoint and Loyyal",
+    description: [
+      "Production web products: Waypoint, an AI-powered travel planner, and Loyyal, a token studio.",
+      "Waypoint: built the frontend, trip-planning workflows, and flight API integration for comparing and booking flights.",
+      "Loyyal: built frontend interfaces and blockchain wallet connectivity for tokenized assets.",
+    ],
+    image: "/images/BrainInventoryBanner.png",
+    imagePosition: "center top",
+    ratio: "1897 / 869",
+    alt: "Brain Inventory product work, including the Waypoint travel planner and Loyyal token studio",
+    tech: ["React.js", "JavaScript", "Redux", "Material UI"],
+  },
+];
+
+function isProjectId(value: string): value is ProjectId {
+  return value === "crayon" || value === "bridge" || value === "brain";
+}
+
+function projectFromHash(): ProjectId {
+  const id = window.location.hash.slice(1);
+  return isProjectId(id) ? id : "crayon";
+}
+
+function projectOnServer(): ProjectId {
+  return "crayon";
+}
+
+function subscribeToProject(onStoreChange: () => void) {
+  const onHash = () => onStoreChange();
+  const onClick = (event: MouseEvent) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const link = event.target instanceof Element ? event.target.closest("a[href^='#']") : null;
+    if (!(link instanceof HTMLAnchorElement)) return;
+    const id = (link.getAttribute("href") ?? "").slice(1);
+    if (isProjectId(id)) queueMicrotask(onStoreChange);
+  };
+
+  window.addEventListener("hashchange", onHash);
+  window.addEventListener("popstate", onHash);
+  document.addEventListener("click", onClick);
+  return () => {
+    window.removeEventListener("hashchange", onHash);
+    window.removeEventListener("popstate", onHash);
+    document.removeEventListener("click", onClick);
+  };
+}
+
+function MetricIcon({ name }: { name: Metric["icon"] }) {
+  if (name === "users") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="8.2" r="2.7" />
+        <path d="M6.8 18.2c.7-2.5 2.6-3.8 5.2-3.8s4.5 1.3 5.2 3.8" />
+      </svg>
+    );
+  }
+
+  if (name === "roles") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="8.2" cy="9" r="2.1" />
+        <circle cx="15.8" cy="9" r="2.1" />
+        <path d="M4.4 17.6c.45-1.9 1.9-2.9 3.8-2.9s3.35 1 3.8 2.9" />
+        <path d="M12 17.6c.45-1.9 1.9-2.9 3.8-2.9s3.35 1 3.8 2.9" />
+      </svg>
+    );
+  }
+
   return (
-    <div className="switch">
-      <a href={previous.href} aria-label={previous.label}>
-        ←
-      </a>
-      <a href={next.href} aria-label={next.label}>
-        →
-      </a>
-    </div>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 3.8 13.4 8.8h5.2l-4.2 3.1 1.6 5.1L12 14.2 8 17l1.6-5.1L5.4 8.8h5.2Z" />
+    </svg>
   );
 }
 
 export function WorkSection() {
+  const active = useSyncExternalStore(subscribeToProject, projectFromHash, projectOnServer);
+  const tabs = useRef<Array<HTMLButtonElement | null>>([]);
+  const project = projects.find((item) => item.id === active) ?? projects[0];
+
+  const select = (id: ProjectId) => {
+    const next = `#${id}`;
+    if (window.location.hash !== next) window.history.pushState(null, "", next);
+    window.dispatchEvent(new HashChangeEvent("hashchange"));
+  };
+
+  const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    const last = projects.length - 1;
+    let next = index;
+    if (event.key === "ArrowDown" || event.key === "ArrowRight") next = index === last ? 0 : index + 1;
+    else if (event.key === "ArrowUp" || event.key === "ArrowLeft") next = index === 0 ? last : index - 1;
+    else if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = last;
+    else return;
+    event.preventDefault();
+    select(projects[next].id);
+    tabs.current[next]?.focus();
+  };
+
   return (
     <section id="work" aria-labelledby="work-title">
-      <div className="sec sec-flush-bottom">
+      <div className="sec sec-flush-top work-sec">
         <header className="sec-head">
           <p className="label">04 — Selected work</p>
           <h2 className="display reveal" id="work-title">
-            Crayon and The Bridge.
+            Selected work.
           </h2>
           <p className="lead">
-            Two production products. Crayon is an AI hiring platform at scale. The Bridge is an AI product
-            experience I led on the frontend. Earlier roles are below.
+            Crayon is an AI-powered recruitment platform serving 175K+ users. The Bridge is a privacy-first AI
+            reflection platform. Brain Inventory is earlier product engineering.
           </p>
-          <nav className="work-index" aria-label="Selected work">
-            {workIndex.map((item) => (
-              <a key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
-          </nav>
         </header>
+
+        <div className="work-split">
+          <div className="work-nav" role="tablist" aria-label="Selected projects" aria-orientation="vertical">
+            {projects.map((item, index) => {
+              const selected = item.id === project.id;
+              return (
+                <button
+                  key={item.id}
+                  ref={(node) => {
+                    tabs.current[index] = node;
+                  }}
+                  id={item.id}
+                  className="work-tab"
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  aria-controls="work-showcase"
+                  tabIndex={selected ? 0 : -1}
+                  onClick={() => select(item.id)}
+                  onKeyDown={(event) => onKeyDown(event, index)}
+                >
+                  <span className="label">{item.index}</span>
+                  <span className="work-tab-name">{item.name}</span>
+                  <span className="work-tab-summary">{item.summary}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <article
+            className="work-showcase"
+            id="work-showcase"
+            role="tabpanel"
+            aria-labelledby={project.id}
+            tabIndex={0}
+          >
+            <div className="work-panel-in" key={project.id}>
+            <div className="work-kicker">
+              <div>
+                <p className="label">{project.kicker}</p>
+                <p className="work-role">{project.role}</p>
+              </div>
+              <p className="work-meta">{project.meta}</p>
+            </div>
+
+            <div className="work-main">
+              <div className="work-copy">
+                <h3>{project.title}</h3>
+                {project.description.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+                {project.live ? (
+                  <div className="work-actions">
+                    <a className="btn work-btn" href={project.live} target="_blank" rel="noopener noreferrer">
+                      View project
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 12h12" />
+                        <path d="M13 6.5 18.5 12 13 17.5" />
+                      </svg>
+                      <span className="sr"> (opens in a new tab)</span>
+                    </a>
+                    <a className="work-live" href={project.live} target="_blank" rel="noopener noreferrer">
+                      Live site
+                      <span aria-hidden="true">↗</span>
+                      <span className="sr"> (opens in a new tab)</span>
+                    </a>
+                  </div>
+                ) : null}
+                {project.metrics ? (
+                  <ul className="work-metrics">
+                    {project.metrics.map((metric) => (
+                      <li key={metric.label}>
+                        <span className="work-metric-ico">
+                          <MetricIcon name={metric.icon} />
+                        </span>
+                        <span>
+                          <strong>{metric.value}</strong>
+                          <span>{metric.label}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
+
+              <div className="work-shot-frame" style={{ "--shot": project.ratio } as CSSProperties}>
+                <div className="work-shot">
+                  <Image
+                    src={project.image}
+                    alt={project.alt}
+                    fill
+                    sizes="(max-width: 980px) 92vw, 34vw"
+                    style={{ objectPosition: project.imagePosition }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="work-tech">
+              <p className="label">Tech</p>
+              <Hood label={`${project.name} technologies`} items={project.tech} />
+            </div>
+            </div>
+          </article>
+        </div>
       </div>
-
-      <article className="project" id="crayon">
-        <div className="stage stage-a reveal">
-          <div className="stage-bar">
-            <p className="label">Senior Software Developer, AI / Full Stack · May 2025 — Present</p>
-            <p className="label">01 / 04</p>
-          </div>
-          <div className="stage-main">
-            <h3 className="stage-name">
-              Crayon
-              <span className="stage-sub">Jobs Platform</span>
-            </h3>
-            <div className="ui-card">
-              <p className="label">Shipped on the platform</p>
-              <ul>
-                <li>
-                  Job Spec Jerry <em>Live</em>
-                </li>
-                <li>
-                  Resume Reggie <em>Live</em>
-                </li>
-                <li>
-                  Ted <em>Live</em>
-                </li>
-                <li>
-                  Thuli <em>Live</em>
-                </li>
-                <li>
-                  Crayon ATS <em>Live</em>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="stage-foot">
-            <p className="stage-stat">
-              <strong>
-                <CountUp value={175} suffix="K+" />
-              </strong>
-              <span>active users on the platform</span>
-            </p>
-            <ProjectSwitch
-              previous={{ href: "#client", label: "Previous project, independent client work" }}
-              next={{ href: "#bridge", label: "Next project, The Bridge" }}
-            />
-          </div>
-        </div>
-        <div className="project-copy">
-          <div>
-            <p className="dek">
-              A hiring platform. Employers post roles, manage applicants in one ATS, and reach a candidate
-              network. AI sits at specific points in that flow.
-            </p>
-            <dl className="meta-dl meta-space">
-              <div>
-                <dt>Role</dt>
-                <dd>Senior Software Developer, AI / Full Stack</dd>
-              </div>
-              <div>
-                <dt>Engagement</dt>
-                <dd>Freelance · Remote · May 2025 — Present</dd>
-              </div>
-              <div>
-                <dt>Product</dt>
-                <dd>
-                  <ExternalLink href="https://crayon.jobs/">crayon.jobs</ExternalLink>
-                </dd>
-              </div>
-              <div>
-                <dt>Stack</dt>
-                <dd>React.js, Next.js, TypeScript, Node.js, MongoDB</dd>
-              </div>
-            </dl>
-          </div>
-          <div>
-            <ul className="ticks">
-              <li>Built and scaled production features for a job platform serving 175K+ active users.</li>
-              <li>Developed REST APIs between the frontend, server logic, and third-party integrations.</li>
-              <li>Implemented authentication, authorization, dashboards, and role-based workflows.</li>
-              <li>Worked with MongoDB and Mongoose for application data and API-driven workflows.</li>
-              <li>
-                Integrated Job Spec Jerry, Resume Reggie, AI video interviews, semantic search, and ATS
-                management workflows.
-              </li>
-            </ul>
-            <div className="jump">
-              <a href="#jerry">Job Spec Jerry</a>
-              <a href="#reggie">Resume Reggie</a>
-              <a href="#interviews">Ted and Thuli</a>
-              <a href="#search">Search</a>
-              <a href="#ats">Crayon ATS</a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article className="project" id="bridge">
-        <div className="stage stage-b reveal">
-          <div className="stage-bar">
-            <p className="label">Lead Frontend Developer</p>
-            <p className="label">02 / 04</p>
-          </div>
-          <div className="stage-main">
-            <h3 className="stage-name">
-              The Bridge
-              <span className="stage-sub">A daily thought-pattern interruption</span>
-            </h3>
-            <ul className="index-list">
-              <li>Drop</li>
-              <li>Pause</li>
-              <li>The Crossing</li>
-              <li>The Locks</li>
-              <li>The Collective Pulse</li>
-            </ul>
-          </div>
-          <div className="stage-foot">
-            <p className="stage-note">Public walker experience and the admin side. Next.js, TypeScript, Tailwind CSS.</p>
-            <ProjectSwitch
-              previous={{ href: "#crayon", label: "Previous project, Crayon" }}
-              next={{ href: "#brain", label: "Next project, Brain Inventory" }}
-            />
-          </div>
-        </div>
-        <div className="project-copy">
-          <div>
-            <p className="dek">
-              Every day a walker gets one Drop, steps into a 144-second Pause, crosses five Planks, and can
-              leave one anonymous thought at The Locks.
-            </p>
-            <dl className="meta-dl meta-space">
-              <div>
-                <dt>Role</dt>
-                <dd>Lead Frontend Developer</dd>
-              </div>
-              <div>
-                <dt>Product</dt>
-                <dd>
-                  <ExternalLink href="https://thebridge144.com/">thebridge144.com</ExternalLink>
-                </dd>
-              </div>
-              <div>
-                <dt>My stack</dt>
-                <dd>Next.js, React, TypeScript, Tailwind CSS</dd>
-              </div>
-              <div>
-                <dt>Quality</dt>
-                <dd>SEO and performance considered throughout</dd>
-              </div>
-            </dl>
-          </div>
-          <div>
-            <ul className="ticks">
-              <li>
-                Led the frontend for the public walker experience: the Drop, the Pause, The Crossing, Planks,
-                The Locks, and The Collective Pulse.
-              </li>
-              <li>Built the signed-in walker flows and the admin side of the product.</li>
-              <li>
-                Shipped the Pause as a real AI conversation in the interface: a hard 144-second session, one
-                question at a time, with streamed responses.
-              </li>
-              <li>Built it as a production Next.js experience, with SEO, accessibility, and performance considered throughout.</li>
-            </ul>
-            <div className="jump">
-              <a href="#drop">Drop</a>
-              <a href="#pause">Pause</a>
-              <a href="#crossing">The Crossing</a>
-              <a href="#locks">The Locks</a>
-              <a href="#pulse">The Collective Pulse</a>
-            </div>
-          </div>
-        </div>
-        <div className="bridge-more">
-          {bridgeFeatures.map((item) => (
-            <AiDetails key={item.id} item={item} />
-          ))}
-          <p className="label arch-note">Product architecture · not all of this is my implementation</p>
-          <Hood label="The Bridge product architecture" items={bridgeArchitecture} />
-        </div>
-      </article>
-
-      <article className="project" id="brain">
-        <div className="stage stage-b reveal">
-          <div className="stage-bar">
-            <p className="label">June 2024 — May 2025 · Indore</p>
-            <p className="label">03 / 04</p>
-          </div>
-          <div className="stage-main">
-            <h3 className="stage-name">
-              Brain Inventory
-              <span className="stage-sub">Software Developer</span>
-            </h3>
-            <ul className="index-list">
-              <li>Dashboards</li>
-              <li>REST APIs</li>
-              <li>Authentication</li>
-              <li>MongoDB</li>
-              <li>AWS</li>
-            </ul>
-          </div>
-          <div className="stage-foot">
-            <p className="stage-note">Production web applications across the interface and the API.</p>
-            <ProjectSwitch
-              previous={{ href: "#bridge", label: "Previous project, The Bridge" }}
-              next={{ href: "#client", label: "Next project, independent client work" }}
-            />
-          </div>
-        </div>
-        <div className="project-copy">
-          <div>
-            <p className="roleline">Software Developer</p>
-            <p>
-              Production web applications across the interface and the API. React.js, Node.js, Express.js, and
-              MongoDB, with AWS in the deployment and troubleshooting path.
-            </p>
-          </div>
-          <ul className="ticks">
-            <li>REST APIs, data validation, authentication flows, and application state.</li>
-            <li>Responsive dashboards and multi-role workflows, plus third-party API integrations.</li>
-            <li>
-              MongoDB / Mongoose for application data. Production issues resolved with product, design, and
-              engineering.
-            </li>
-          </ul>
-        </div>
-      </article>
-
-      <article className="project" id="client">
-        <div className="stage stage-c reveal">
-          <div className="stage-bar">
-            <p className="label">Mar 2023 — Jan 2024 · Remote</p>
-            <p className="label">04 / 04</p>
-          </div>
-          <div className="stage-main stage-main-solo">
-            <div>
-              <p className="giant-date">2023—2024</p>
-              <h3 className="stage-name stage-name-solo">Independent client work</h3>
-              <p className="stage-sub">Freelance Developer</p>
-            </div>
-          </div>
-          <div className="stage-foot">
-            <p className="stage-note">
-              Full-stack web applications taken from client requirements through development and deployment.
-            </p>
-            <ProjectSwitch
-              previous={{ href: "#brain", label: "Previous project, Brain Inventory" }}
-              next={{ href: "#crayon", label: "Next project, Crayon Jobs" }}
-            />
-          </div>
-        </div>
-        <div className="project-copy">
-          <div>
-            <p className="roleline">Freelance Developer</p>
-            <p>Full-stack web applications taken from client requirements through development and deployment.</p>
-          </div>
-          <ul className="ticks">
-            <li>React.js, Node.js, Express.js, and MongoDB.</li>
-            <li>REST APIs and third-party services, delivered as responsive, production-ready applications.</li>
-          </ul>
-        </div>
-      </article>
     </section>
   );
 }
