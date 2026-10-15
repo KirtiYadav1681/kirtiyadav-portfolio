@@ -1,14 +1,20 @@
 "use client";
 
 import { experience } from "@/lib/content";
+import { motion, useReducedMotion } from "motion/react";
 import { useLayoutEffect, useRef, useState } from "react";
 
 type ExperienceItem = (typeof experience)[number];
 
+const ease = [0.16, 1, 0.3, 1] as const;
+const revealViewport = { once: true, amount: 0.45 } as const;
+
 export function ExperienceSection() {
   const streamRef = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
   const [active, setActive] = useState(-1);
   const [progress, setProgress] = useState(false);
+  const skip = reduce === true;
 
   useLayoutEffect(() => {
     const stream = streamRef.current;
@@ -79,27 +85,72 @@ export function ExperienceSection() {
 
   return (
     <section id="experience" className="exp-sec" aria-labelledby="exp-title">
+      <div className="exp-glow" aria-hidden="true" />
       <div className="sec">
         <div className="exp-board">
-          <p className="label exp-kicker">05 — Experience</p>
-          <header className="exp-intro">
-            <h2 className="exp-title" id="exp-title">
-              <span>3+ years </span>
-              <span>building </span>
-              <span>software.</span>
-            </h2>
-            <p className="exp-dek">
-              A journey from computer science to building AI products used by 175K+ people.
-            </p>
-          </header>
+          <div className="exp-panel">
+            <motion.p
+              className="label exp-kicker"
+              initial={skip ? false : { opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={revealViewport}
+              transition={{ duration: 0.55, ease }}
+            >
+              05 — Experience
+            </motion.p>
+            <header className="exp-intro">
+              <h2 className="exp-title" id="exp-title">
+                <motion.span
+                  className="exp-title-line"
+                  initial={skip ? false : { opacity: 0, y: 22 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={revealViewport}
+                  transition={{ duration: 0.72, delay: 0.08, ease }}
+                >
+                  3+ years of
+                </motion.span>
+                <motion.span
+                  className="exp-title-line exp-title-accent"
+                  initial={skip ? false : { opacity: 0, y: 22 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={revealViewport}
+                  transition={{ duration: 0.72, delay: 0.18, ease }}
+                >
+                  building software.
+                </motion.span>
+              </h2>
+              <motion.p
+                className="exp-dek"
+                initial={skip ? false : { opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={revealViewport}
+                transition={{ duration: 0.65, delay: 0.34, ease }}
+              >
+                A journey from computer science to building AI products used by 175K+ people.
+              </motion.p>
+            </header>
+          </div>
           <div className="exp-stream" ref={streamRef} data-progress={progress ? "true" : undefined}>
             <div className="exp-rail" aria-hidden="true">
-              <span className="exp-rail-track" />
+              <motion.span
+                className="exp-rail-track"
+                initial={skip ? false : { scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.9, delay: 0.16, ease }}
+                style={{ transformOrigin: "top center" }}
+              />
               <span className="exp-rail-fill" />
             </div>
             <ol className="exp-list">
               {experience.map((item, index) => (
-                <ExperienceEntry key={item.year} item={item} active={progress && active === index} />
+                <ExperienceEntry
+                  key={item.year}
+                  item={item}
+                  index={index}
+                  active={progress && active === index}
+                  skip={skip}
+                />
               ))}
             </ol>
           </div>
@@ -109,17 +160,48 @@ export function ExperienceSection() {
   );
 }
 
-function ExperienceEntry({ item, active }: { item: ExperienceItem; active: boolean }) {
+function ExperienceEntry({
+  item,
+  index,
+  active,
+  skip,
+}: {
+  item: ExperienceItem;
+  index: number;
+  active: boolean;
+  skip: boolean;
+}) {
+  const delay = 0.22 + index * 0.12;
+
   return (
-    <li className="exp-row" data-active={active ? "true" : undefined}>
+    <li className="exp-row" data-active={active ? "true" : undefined} tabIndex={0}>
       <div className="exp-node">
-        <span className="exp-dot" aria-hidden="true" />
-        <div className="exp-when exp-reveal">
+        <motion.span
+          className="exp-dot"
+          aria-hidden="true"
+          initial={skip ? false : { opacity: 0, scale: 0.7 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={revealViewport}
+          transition={{ duration: 0.45, delay, ease }}
+        />
+        <motion.div
+          className="exp-when exp-reveal"
+          initial={skip ? false : { opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={revealViewport}
+          transition={{ duration: 0.55, delay, ease }}
+        >
           <p className="exp-year">{item.year}</p>
           <p className="exp-dates">{item.dates}</p>
-        </div>
+        </motion.div>
       </div>
-      <article className="exp-body exp-reveal">
+      <motion.article
+        className="exp-body exp-reveal"
+        initial={skip ? false : { opacity: 0, x: 18 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={revealViewport}
+        transition={{ duration: 0.62, delay: delay + 0.04, ease }}
+      >
         <div className="exp-copy">
           <h3>{item.title}</h3>
           <p className="exp-role">{item.role}</p>
@@ -143,7 +225,7 @@ function ExperienceEntry({ item, active }: { item: ExperienceItem; active: boole
             />
           </svg>
         </span>
-      </article>
+      </motion.article>
     </li>
   );
 }
