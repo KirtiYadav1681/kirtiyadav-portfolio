@@ -141,7 +141,6 @@ export function Hero() {
       <HeroCanvas>
         <div className="hero-layout">
           <div className="hero-copy">
-            <p className="label hero-kicker">Full-Stack AI Engineer</p>
             <h1 className="hero-title">
               <span className="sr">{site.name}</span>
               <span className="hero-line hero-line-1">Full-Stack</span>
@@ -163,11 +162,6 @@ export function Hero() {
                 Download resume
               </a>
             </div>
-            <p className="hero-resume-alt">
-              <a href={site.resumes.ai.href} download="">
-                {site.resumes.ai.label}
-              </a>
-            </p>
           </div>
 
           <div className="hero-visual">

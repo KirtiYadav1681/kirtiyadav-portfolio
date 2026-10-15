@@ -584,11 +584,6 @@ html.menu-open .nav {
   max-width: 640px;
 }
 
-.hero-kicker {
-  color: #d5c9ff;
-  margin-bottom: 16px;
-}
-
 .hero-title {
   font-weight: 800;
   letter-spacing: -0.058em;
@@ -699,25 +694,6 @@ html.menu-open .nav {
 .hero-btn:focus-visible {
   outline: 2px solid #d5c9ff;
   outline-offset: 3px;
-}
-
-.hero-resume-alt {
-  margin: 14px 0 0;
-}
-
-.hero-resume-alt a {
-  color: #b7a8e6;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(183, 168, 230, 0.35);
-}
-
-.hero-resume-alt a:hover {
-  color: #fff;
-  border-bottom-color: #d5c9ff;
 }
 
 .hero-visual {
@@ -4621,10 +4597,6 @@ footer {
     animation: hero-fade 0.85s var(--ease) backwards;
   }
 
-  .hero-kicker {
-    animation: hero-rise 0.6s var(--ease) 0.08s backwards;
-  }
-
   .hero-line-1 {
     animation: hero-rise 0.7s var(--ease) 0.16s backwards;
   }
@@ -4648,10 +4620,6 @@ footer {
 
   .hero-cta .hero-btn:nth-child(3) {
     animation: hero-rise 0.55s var(--ease) 0.68s backwards;
-  }
-
-  .hero-resume-alt {
-    animation: hero-rise 0.55s var(--ease) 0.74s backwards;
   }
 
   .hero-portrait {
