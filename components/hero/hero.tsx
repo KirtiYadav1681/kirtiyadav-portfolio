@@ -162,6 +162,38 @@ export function Hero() {
                 Download resume
               </a>
             </div>
+            <ul className="hero-metrics" aria-label="At a glance">
+              <li className="hero-metric">
+                <span className="hero-metric-icon">
+                  <UsersIcon />
+                </span>
+                <p>
+                  <span className="hero-metric-value">
+                    <CountUp value={175} suffix="K+" />
+                  </span>
+                  <span className="hero-metric-label">users</span>
+                </p>
+              </li>
+              <li className="hero-metric-sep" aria-hidden="true" />
+              <li className="hero-metric">
+                <span className="hero-metric-icon">
+                  <BoltIcon />
+                </span>
+                <p>
+                  <span className="hero-metric-value">3+</span>
+                  <span className="hero-metric-label">years</span>
+                </p>
+              </li>
+              <li className="hero-metric-sep" aria-hidden="true" />
+              <li className="hero-metric hero-metric-place">
+                <span className="hero-metric-icon">
+                  <PinIcon />
+                </span>
+                <p>
+                  <span className="hero-metric-value">{site.location}</span>
+                </p>
+              </li>
+            </ul>
           </div>
 
           <div className="hero-visual">
@@ -196,39 +228,6 @@ export function Hero() {
             </ul>
           </div>
         </div>
-
-        <ul className="hero-metrics" aria-label="At a glance">
-          <li className="hero-metric">
-            <span className="hero-metric-icon">
-              <UsersIcon />
-            </span>
-            <p>
-              <span className="hero-metric-value">
-                <CountUp value={175} suffix="K+" />
-              </span>
-              <span className="hero-metric-label">users</span>
-            </p>
-          </li>
-          <li className="hero-metric-sep" aria-hidden="true" />
-          <li className="hero-metric">
-            <span className="hero-metric-icon">
-              <BoltIcon />
-            </span>
-            <p>
-              <span className="hero-metric-value">3+</span>
-              <span className="hero-metric-label">years</span>
-            </p>
-          </li>
-          <li className="hero-metric-sep" aria-hidden="true" />
-          <li className="hero-metric hero-metric-place">
-            <span className="hero-metric-icon">
-              <PinIcon />
-            </span>
-            <p>
-              <span className="hero-metric-value">{site.location}</span>
-            </p>
-          </li>
-        </ul>
       </HeroCanvas>
     </section>
   );
