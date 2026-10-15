@@ -262,6 +262,16 @@ export const experience = [
     ],
   },
   {
+    year: "2023",
+    dates: "MAR 2023 – JAN 2024",
+    title: "Independent client work",
+    role: "Freelance Developer · Remote",
+    points: [
+      "Responsive full-stack applications with React.js, Node.js, Express.js, and MongoDB.",
+      "Client work from requirements through development and deployment, including REST APIs and third-party services.",
+    ],
+  },
+  {
     year: "2019",
     dates: "2019 – 2023",
     title: "RGPV University, Indore",
